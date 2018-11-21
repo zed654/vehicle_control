@@ -1,0 +1,895 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXAggregateTarget section */
+		0C8C42872B304396B914D42C /* ZERO_CHECK */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 745D82BE45914520AEEE76BE /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */;
+			buildPhases = (
+				7EA24D8CF78D4CBAA134561F /* CMake Rules */,
+			);
+			dependencies = (
+			);
+			name = ZERO_CHECK;
+			productName = ZERO_CHECK;
+		};
+		5F0EDE505ED840C2BBB79FC4 /* ALL_BUILD */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = C6A267293C0244C98F5B1473 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */;
+			buildPhases = (
+				FFF970597A2145CC94A9AF41 /* CMake Rules */,
+			);
+			dependencies = (
+				5E0316F58A99435DB1FE316A /* PBXTargetDependency */,
+				482C1389678A4C29A711E3F8 /* PBXTargetDependency */,
+				6D8F5CE76664432BB6BC56AA /* PBXTargetDependency */,
+			);
+			name = ALL_BUILD;
+			productName = ALL_BUILD;
+		};
+/* End PBXAggregateTarget section */
+
+/* Begin PBXBuildFile section */
+		0F24F1FF25A64F1ABAE4C369 /* /Users/CHP/ioniq/ioniq_control/include/pd_control.h */ = {isa = PBXBuildFile; fileRef = A5B83074B33442769B75A00D /* /Users/CHP/ioniq/ioniq_control/include/pd_control.h */; };
+		2DE88214177840ED9BE1B775 /* /Users/CHP/ioniq/ioniq_control/src/dead_reckoning__thread__.cpp */ = {isa = PBXBuildFile; fileRef = E64DE5E23B36487ABC990C3E /* /Users/CHP/ioniq/ioniq_control/src/dead_reckoning__thread__.cpp */; };
+		2E779D2768BD49958DBB569D /* /Users/CHP/ioniq/ioniq_control/include/env_setting.h */ = {isa = PBXBuildFile; fileRef = CEE27D1901F5461F855C6CBE /* /Users/CHP/ioniq/ioniq_control/include/env_setting.h */; };
+		35674254D134400BBE2218C1 /* /Users/CHP/ioniq/ioniq_control/include/parser_vercpp.hpp */ = {isa = PBXBuildFile; fileRef = 9F603F03CA1B4176954D43F3 /* /Users/CHP/ioniq/ioniq_control/include/parser_vercpp.hpp */; };
+		3AC888846FA24842BDCA7BC8 /* /Users/CHP/ioniq/ioniq_control/include/c_test.h */ = {isa = PBXBuildFile; fileRef = 722B3C3039034BD8B18BAC17 /* /Users/CHP/ioniq/ioniq_control/include/c_test.h */; };
+		42F7DC0C35D54340B3D04BC3 /* /Users/CHP/ioniq/ioniq_control/src/GNSS_receive__thread__.cpp */ = {isa = PBXBuildFile; fileRef = E0E0EA8F78B94068ADEA5D61 /* /Users/CHP/ioniq/ioniq_control/src/GNSS_receive__thread__.cpp */; };
+		528C59DA1D09400CB439802E /* /Users/CHP/ioniq/ioniq_control/src/coord_map.cpp */ = {isa = PBXBuildFile; fileRef = 4578D7BB360F42C390CD312F /* /Users/CHP/ioniq/ioniq_control/src/coord_map.cpp */; };
+		6B4CCB7A37F54982B5190624 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = BCEA9FCC02124C479D189A3C /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */; };
+		7574A1084ECE4DD39EC4E6F1 /* /Users/CHP/ioniq/ioniq_control/include/coord_map.h */ = {isa = PBXBuildFile; fileRef = 390B243E8BB54E0FAB8688C9 /* /Users/CHP/ioniq/ioniq_control/include/coord_map.h */; };
+		77D392AFE48B421692BCFCA4 /* /Users/CHP/ioniq/ioniq_control/src/CAN_RW__thread__.cpp */ = {isa = PBXBuildFile; fileRef = 21E90F66C0E64C77B83DA87C /* /Users/CHP/ioniq/ioniq_control/src/CAN_RW__thread__.cpp */; };
+		7C8D02F468D04F589DE6C197 /* /Users/CHP/ioniq/ioniq_control/src/c_test_fun.cpp */ = {isa = PBXBuildFile; fileRef = 41CE6F9914A941BC8A195132 /* /Users/CHP/ioniq/ioniq_control/src/c_test_fun.cpp */; };
+		869AC258B9394FAE8EB0A237 /* /Users/CHP/ioniq/ioniq_control/src/parser_vercpp.cpp */ = {isa = PBXBuildFile; fileRef = 22E864717FD94B85A27F4228 /* /Users/CHP/ioniq/ioniq_control/src/parser_vercpp.cpp */; };
+		B165CE32C6CF434E93D7D838 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */ = {isa = PBXBuildFile; fileRef = 4BD8FBEA782E4D38AAECFDF6 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */; };
+		F457F8C97426451C975B119F /* /Users/CHP/ioniq/ioniq_control/src/main.cpp */ = {isa = PBXBuildFile; fileRef = E00D293F437B424392F845CD /* /Users/CHP/ioniq/ioniq_control/src/main.cpp */; };
+		F644D625F20543CF95B07170 /* /Users/CHP/ioniq/ioniq_control/src/path_follow__thread__.cpp */ = {isa = PBXBuildFile; fileRef = 3CAC45184B814D5B9DD727B5 /* /Users/CHP/ioniq/ioniq_control/src/path_follow__thread__.cpp */; };
+		F64AF62D24CB4B70AC4443B6 /* /Users/CHP/ioniq/ioniq_control/src/c_test.cpp */ = {isa = PBXBuildFile; fileRef = 567E5710092646438B016CEE /* /Users/CHP/ioniq/ioniq_control/src/c_test.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXBuildStyle section */
+		9224A24CB506455BB3276B24 /* MinSizeRel */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = MinSizeRel;
+		};
+		D35EC0B8BFFD483686BCC165 /* Debug */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Debug;
+		};
+		DE0B39397FFE438596DD1024 /* RelWithDebInfo */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = RelWithDebInfo;
+		};
+		EFC55F6DE8584418A720CAC4 /* Release */ = {
+			isa = PBXBuildStyle;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+			};
+			name = Release;
+		};
+/* End PBXBuildStyle section */
+
+/* Begin PBXContainerItemProxy section */
+		2B5C6A3B79C646BCB371EF32 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151FEE045D084A92A093BF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C8C42872B304396B914D42C;
+			remoteInfo = ZERO_CHECK;
+		};
+		4891539D908C4483957C0253 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151FEE045D084A92A093BF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 1EA3AE51562C43AABDFD4FD9;
+			remoteInfo = MAIN;
+		};
+		4CD0C6309CED476E975272B7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151FEE045D084A92A093BF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 353B6FB659324E3DA5C2E0C6;
+			remoteInfo = C_TEST;
+		};
+		712DFAA64A2A4DFD96A97B6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151FEE045D084A92A093BF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C8C42872B304396B914D42C;
+			remoteInfo = ZERO_CHECK;
+		};
+		C79360EDDE6147F587BE4A26 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 151FEE045D084A92A093BF52 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C8C42872B304396B914D42C;
+			remoteInfo = ZERO_CHECK;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0A0E7F3091554B5D98518481 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		21E90F66C0E64C77B83DA87C /* /Users/CHP/ioniq/ioniq_control/src/CAN_RW__thread__.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = CAN_RW__thread__.cpp; path = src/CAN_RW__thread__.cpp; sourceTree = SOURCE_ROOT; };
+		22E864717FD94B85A27F4228 /* /Users/CHP/ioniq/ioniq_control/src/parser_vercpp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = parser_vercpp.cpp; path = src/parser_vercpp.cpp; sourceTree = SOURCE_ROOT; };
+		390B243E8BB54E0FAB8688C9 /* /Users/CHP/ioniq/ioniq_control/include/coord_map.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = coord_map.h; path = include/coord_map.h; sourceTree = SOURCE_ROOT; };
+		3BF887C18C254CA6832FF5B8 /* C_TEST */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = C_TEST; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CAC45184B814D5B9DD727B5 /* /Users/CHP/ioniq/ioniq_control/src/path_follow__thread__.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = path_follow__thread__.cpp; path = src/path_follow__thread__.cpp; sourceTree = SOURCE_ROOT; };
+		41CE6F9914A941BC8A195132 /* /Users/CHP/ioniq/ioniq_control/src/c_test_fun.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = c_test_fun.cpp; path = src/c_test_fun.cpp; sourceTree = SOURCE_ROOT; };
+		4578D7BB360F42C390CD312F /* /Users/CHP/ioniq/ioniq_control/src/coord_map.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = coord_map.cpp; path = src/coord_map.cpp; sourceTree = SOURCE_ROOT; };
+		4BD8FBEA782E4D38AAECFDF6 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		567E5710092646438B016CEE /* /Users/CHP/ioniq/ioniq_control/src/c_test.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = c_test.cpp; path = src/c_test.cpp; sourceTree = SOURCE_ROOT; };
+		722B3C3039034BD8B18BAC17 /* /Users/CHP/ioniq/ioniq_control/include/c_test.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = c_test.h; path = include/c_test.h; sourceTree = SOURCE_ROOT; };
+		9F603F03CA1B4176954D43F3 /* /Users/CHP/ioniq/ioniq_control/include/parser_vercpp.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = parser_vercpp.hpp; path = include/parser_vercpp.hpp; sourceTree = SOURCE_ROOT; };
+		A5B83074B33442769B75A00D /* /Users/CHP/ioniq/ioniq_control/include/pd_control.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = pd_control.h; path = include/pd_control.h; sourceTree = SOURCE_ROOT; };
+		BCEA9FCC02124C479D189A3C /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */ = {isa = PBXFileReference; explicitFileType = sourcecode.text; fileEncoding = 4; name = CMakeLists.txt; path = CMakeLists.txt; sourceTree = SOURCE_ROOT; };
+		CEE27D1901F5461F855C6CBE /* /Users/CHP/ioniq/ioniq_control/include/env_setting.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; name = env_setting.h; path = include/env_setting.h; sourceTree = SOURCE_ROOT; };
+		E00D293F437B424392F845CD /* /Users/CHP/ioniq/ioniq_control/src/main.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
+		E0E0EA8F78B94068ADEA5D61 /* /Users/CHP/ioniq/ioniq_control/src/GNSS_receive__thread__.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = GNSS_receive__thread__.cpp; path = src/GNSS_receive__thread__.cpp; sourceTree = SOURCE_ROOT; };
+		E64DE5E23B36487ABC990C3E /* /Users/CHP/ioniq/ioniq_control/src/dead_reckoning__thread__.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 4; name = dead_reckoning__thread__.cpp; path = src/dead_reckoning__thread__.cpp; sourceTree = SOURCE_ROOT; };
+		EE041E488B1547D0B6FA7B1F /* MAIN */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; path = MAIN; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1F85E43835F54337BA3979EB /* MAIN */ = {
+			isa = PBXGroup;
+			children = (
+				A89F5BBD6093496CB2571351 /* Source Files */,
+				DF098CCE342F48BBA4AC95C8 /* Header Files */,
+				BCEA9FCC02124C479D189A3C /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */,
+			);
+			name = MAIN;
+			sourceTree = "<group>";
+		};
+		3D1EBFDA0134442A83CFF027 /* ALL_BUILD */ = {
+			isa = PBXGroup;
+			children = (
+				9A91CD9631054162978C24C9 /* CMake Rules */,
+				0A0E7F3091554B5D98518481 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */,
+			);
+			name = ALL_BUILD;
+			sourceTree = "<group>";
+		};
+		3E5FFF090EFE4FA3B5BB3F1B /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				722B3C3039034BD8B18BAC17 /* /Users/CHP/ioniq/ioniq_control/include/c_test.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+		6EDE2746F89B4F7BB2B3F009 /* C_TEST */ = {
+			isa = PBXGroup;
+			children = (
+				D617CB2B72F24D679ACD5622 /* Source Files */,
+				3E5FFF090EFE4FA3B5BB3F1B /* Header Files */,
+				4BD8FBEA782E4D38AAECFDF6 /* /Users/CHP/ioniq/ioniq_control/CMakeLists.txt */,
+			);
+			name = C_TEST;
+			sourceTree = "<group>";
+		};
+		9A91CD9631054162978C24C9 /* CMake Rules */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "CMake Rules";
+			sourceTree = "<group>";
+		};
+		A16F400F4CD74A4DBE4060FC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3BF887C18C254CA6832FF5B8 /* C_TEST */,
+				EE041E488B1547D0B6FA7B1F /* MAIN */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A89F5BBD6093496CB2571351 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				21E90F66C0E64C77B83DA87C /* /Users/CHP/ioniq/ioniq_control/src/CAN_RW__thread__.cpp */,
+				E0E0EA8F78B94068ADEA5D61 /* /Users/CHP/ioniq/ioniq_control/src/GNSS_receive__thread__.cpp */,
+				4578D7BB360F42C390CD312F /* /Users/CHP/ioniq/ioniq_control/src/coord_map.cpp */,
+				E64DE5E23B36487ABC990C3E /* /Users/CHP/ioniq/ioniq_control/src/dead_reckoning__thread__.cpp */,
+				E00D293F437B424392F845CD /* /Users/CHP/ioniq/ioniq_control/src/main.cpp */,
+				22E864717FD94B85A27F4228 /* /Users/CHP/ioniq/ioniq_control/src/parser_vercpp.cpp */,
+				3CAC45184B814D5B9DD727B5 /* /Users/CHP/ioniq/ioniq_control/src/path_follow__thread__.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		D51C93F0FFD0400A97E29C70 = {
+			isa = PBXGroup;
+			children = (
+				6EDE2746F89B4F7BB2B3F009 /* C_TEST */,
+				1F85E43835F54337BA3979EB /* MAIN */,
+				3D1EBFDA0134442A83CFF027 /* ALL_BUILD */,
+				A16F400F4CD74A4DBE4060FC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D617CB2B72F24D679ACD5622 /* Source Files */ = {
+			isa = PBXGroup;
+			children = (
+				567E5710092646438B016CEE /* /Users/CHP/ioniq/ioniq_control/src/c_test.cpp */,
+				41CE6F9914A941BC8A195132 /* /Users/CHP/ioniq/ioniq_control/src/c_test_fun.cpp */,
+			);
+			name = "Source Files";
+			sourceTree = "<group>";
+		};
+		DF098CCE342F48BBA4AC95C8 /* Header Files */ = {
+			isa = PBXGroup;
+			children = (
+				390B243E8BB54E0FAB8688C9 /* /Users/CHP/ioniq/ioniq_control/include/coord_map.h */,
+				CEE27D1901F5461F855C6CBE /* /Users/CHP/ioniq/ioniq_control/include/env_setting.h */,
+				9F603F03CA1B4176954D43F3 /* /Users/CHP/ioniq/ioniq_control/include/parser_vercpp.hpp */,
+				A5B83074B33442769B75A00D /* /Users/CHP/ioniq/ioniq_control/include/pd_control.h */,
+			);
+			name = "Header Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1EA3AE51562C43AABDFD4FD9 /* MAIN */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8C9AD954814841C081CEEF4B /* Build configuration list for PBXNativeTarget "MAIN" */;
+			buildPhases = (
+				458A815ACEFB43E69CBB04F6 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				70C24EDA3CC04B44ADAD3E55 /* PBXTargetDependency */,
+			);
+			name = MAIN;
+			productName = MAIN;
+			productReference = EE041E488B1547D0B6FA7B1F /* MAIN */;
+			productType = "com.apple.product-type.tool";
+		};
+		353B6FB659324E3DA5C2E0C6 /* C_TEST */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6C83ECD7BEB04134BDCD7C32 /* Build configuration list for PBXNativeTarget "C_TEST" */;
+			buildPhases = (
+				91A7D9079B4D4A0D8B1A1266 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9CF52B6D5BAD477B9A59DE87 /* PBXTargetDependency */,
+			);
+			name = C_TEST;
+			productName = C_TEST;
+			productReference = 3BF887C18C254CA6832FF5B8 /* C_TEST */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		151FEE045D084A92A093BF52 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1010;
+			};
+			buildConfigurationList = D4C7C5A1A0044D7487CFA927 /* Build configuration list for PBXProject "pcan_mac" */;
+			buildSettings = {
+			};
+			buildStyles = (
+				D35EC0B8BFFD483686BCC165 /* Debug */,
+				EFC55F6DE8584418A720CAC4 /* Release */,
+				9224A24CB506455BB3276B24 /* MinSizeRel */,
+				DE0B39397FFE438596DD1024 /* RelWithDebInfo */,
+			);
+			compatibilityVersion = "Xcode 3.2";
+			hasScannedForEncodings = 0;
+			mainGroup = D51C93F0FFD0400A97E29C70;
+			projectDirPath = ../;
+			projectRoot = "";
+			targets = (
+				5F0EDE505ED840C2BBB79FC4 /* ALL_BUILD */,
+				353B6FB659324E3DA5C2E0C6 /* C_TEST */,
+				1EA3AE51562C43AABDFD4FD9 /* MAIN */,
+				0C8C42872B304396B914D42C /* ZERO_CHECK */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		107754B058704950AAB1AFD0 = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		7EA24D8CF78D4CBAA134561F /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/CHP/ioniq/ioniq_control/build -f /Users/CHP/ioniq/ioniq_control/build/CMakeScripts/ZERO_CHECK_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+		982F27D4CE1445C0AF7F16CD = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# shell script goes here
+exit 0";
+			showEnvVarsInLog = 0;
+		};
+		FFF970597A2145CC94A9AF41 /* CMake Rules */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			name = "CMake Rules";
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "make -C /Users/CHP/ioniq/ioniq_control/build -f /Users/CHP/ioniq/ioniq_control/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		458A815ACEFB43E69CBB04F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77D392AFE48B421692BCFCA4 /* /Users/CHP/ioniq/ioniq_control/src/CAN_RW__thread__.cpp */,
+				42F7DC0C35D54340B3D04BC3 /* /Users/CHP/ioniq/ioniq_control/src/GNSS_receive__thread__.cpp */,
+				528C59DA1D09400CB439802E /* /Users/CHP/ioniq/ioniq_control/src/coord_map.cpp */,
+				2DE88214177840ED9BE1B775 /* /Users/CHP/ioniq/ioniq_control/src/dead_reckoning__thread__.cpp */,
+				F457F8C97426451C975B119F /* /Users/CHP/ioniq/ioniq_control/src/main.cpp */,
+				869AC258B9394FAE8EB0A237 /* /Users/CHP/ioniq/ioniq_control/src/parser_vercpp.cpp */,
+				F644D625F20543CF95B07170 /* /Users/CHP/ioniq/ioniq_control/src/path_follow__thread__.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91A7D9079B4D4A0D8B1A1266 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F64AF62D24CB4B70AC4443B6 /* /Users/CHP/ioniq/ioniq_control/src/c_test.cpp */,
+				7C8D02F468D04F589DE6C197 /* /Users/CHP/ioniq/ioniq_control/src/c_test_fun.cpp */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		482C1389678A4C29A711E3F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 353B6FB659324E3DA5C2E0C6 /* C_TEST */;
+			targetProxy = 4CD0C6309CED476E975272B7 /* PBXContainerItemProxy */;
+		};
+		5E0316F58A99435DB1FE316A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C8C42872B304396B914D42C /* ZERO_CHECK */;
+			targetProxy = 712DFAA64A2A4DFD96A97B6C /* PBXContainerItemProxy */;
+		};
+		6D8F5CE76664432BB6BC56AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 1EA3AE51562C43AABDFD4FD9 /* MAIN */;
+			targetProxy = 4891539D908C4483957C0253 /* PBXContainerItemProxy */;
+		};
+		70C24EDA3CC04B44ADAD3E55 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C8C42872B304396B914D42C /* ZERO_CHECK */;
+			targetProxy = C79360EDDE6147F587BE4A26 /* PBXContainerItemProxy */;
+		};
+		9CF52B6D5BAD477B9A59DE87 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C8C42872B304396B914D42C /* ZERO_CHECK */;
+			targetProxy = 2B5C6A3B79C646BCB371EF32 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		03E24CA7CF604CD698EEB539 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build/build;
+			};
+			name = Release;
+		};
+		07EAC5BEB068475EB1DF473E /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		1278F90B0D88487A81C52064 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		23447F989CBA4B208B08216A /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build/build;
+			};
+			name = MinSizeRel;
+		};
+		25F1DB4AC1544312B80E594D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = C_TEST;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		26524CB4B9E7490B9927147F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		44E10882A082428B87CCFFD2 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = C_TEST;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		4EA362F68E05419BAE0E3CF5 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MAIN;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		5B819B8B22CE4F6E92E9EF86 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "    ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MAIN;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		7B85CB3462734F548D13954C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 3;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MAIN;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		875BFFF007694EB3AF630CFA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "    ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = C_TEST;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		93DECA6CDB4F4659A9BD714D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build/build;
+			};
+			name = Debug;
+		};
+		96A720DE749E4E86B64B2D29 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk;
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build/build;
+			};
+			name = RelWithDebInfo;
+		};
+		A277E242C8644ECFA68A7FB4 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		A347C828CDB04E7F92C6F98A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		D8E16BFCD69C41F9A4A62628 /* MinSizeRel */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = s;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "    -DNDEBUG  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MAIN;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = MinSizeRel;
+		};
+		D90A4D3A12A04A62A4639E43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Release;
+		};
+		EE164EAEB7B046FEB9C37FBD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ZERO_CHECK;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = Debug;
+		};
+		F26ADC609DF64E12B8155995 /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				INSTALL_PATH = "";
+				OTHER_LDFLAGS = " ";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = ALL_BUILD;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+		FA51900611CC4E12ABEC21FE /* RelWithDebInfo */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				EXECUTABLE_PREFIX = "";
+				EXECUTABLE_SUFFIX = "";
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
+				GCC_OPTIMIZATION_LEVEL = 2;
+				GCC_PREPROCESSOR_DEFINITIONS = ("'CMAKE_INTDIR=\"$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)\"'");
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				HEADER_SEARCH_PATHS = (/Users/CHP/ioniq/ioniq_control/include,/Users/CHP/ioniq/ioniq_control/include/serial,/Users/CHP/ioniq/ioniq_control/include/serial/impl,/Users/CHP/ioniq/ioniq_control/src);
+				INSTALL_PATH = "";
+				LD_RUNPATH_SEARCH_PATHS = "/Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib /usr/local/lib/lib /usr/local/lib /usr/local/include /usr/local/include/opencv";
+				LIBRARY_SEARCH_PATHS = " /Users/CHP/ioniq/ioniq_control/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /Users/CHP/ioniq/ioniq_control/lib /tmp/usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /tmp/usr/local/lib /usr/local/lib/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib/lib /usr/local/lib/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/lib /usr/local/include/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include /usr/local/include/opencv/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME) /usr/local/include/opencv";
+				OTHER_CPLUSPLUSFLAGS = "       -DNDEBUG  ";
+				OTHER_LDFLAGS = " -Wl,-search_paths_first -Wl,-headerpad_max_install_names  -lPCBUSB -lserial /usr/local/lib/libopencv_stitching.3.4.2.dylib /usr/local/lib/libopencv_superres.3.4.2.dylib /usr/local/lib/libopencv_videostab.3.4.2.dylib /usr/local/lib/libopencv_aruco.3.4.2.dylib /usr/local/lib/libopencv_bgsegm.3.4.2.dylib /usr/local/lib/libopencv_bioinspired.3.4.2.dylib /usr/local/lib/libopencv_ccalib.3.4.2.dylib /usr/local/lib/libopencv_dnn_objdetect.3.4.2.dylib /usr/local/lib/libopencv_dpm.3.4.2.dylib /usr/local/lib/libopencv_face.3.4.2.dylib /usr/local/lib/libopencv_fuzzy.3.4.2.dylib /usr/local/lib/libopencv_hfs.3.4.2.dylib /usr/local/lib/libopencv_img_hash.3.4.2.dylib /usr/local/lib/libopencv_line_descriptor.3.4.2.dylib /usr/local/lib/libopencv_optflow.3.4.2.dylib /usr/local/lib/libopencv_reg.3.4.2.dylib /usr/local/lib/libopencv_rgbd.3.4.2.dylib /usr/local/lib/libopencv_saliency.3.4.2.dylib /usr/local/lib/libopencv_stereo.3.4.2.dylib /usr/local/lib/libopencv_structured_light.3.4.2.dylib /usr/local/lib/libopencv_surface_matching.3.4.2.dylib /usr/local/lib/libopencv_tracking.3.4.2.dylib /usr/local/lib/libopencv_xfeatures2d.3.4.2.dylib /usr/local/lib/libopencv_ximgproc.3.4.2.dylib /usr/local/lib/libopencv_xobjdetect.3.4.2.dylib /usr/local/lib/libopencv_xphoto.3.4.2.dylib /usr/local/lib/libopencv_shape.3.4.2.dylib /usr/local/lib/libopencv_photo.3.4.2.dylib /usr/local/lib/libopencv_calib3d.3.4.2.dylib /usr/local/lib/libopencv_features2d.3.4.2.dylib /usr/local/lib/libopencv_highgui.3.4.2.dylib /usr/local/lib/libopencv_videoio.3.4.2.dylib /usr/local/lib/libopencv_phase_unwrapping.3.4.2.dylib /usr/local/lib/libopencv_dnn.3.4.2.dylib /usr/local/lib/libopencv_video.3.4.2.dylib /usr/local/lib/libopencv_datasets.3.4.2.dylib /usr/local/lib/libopencv_flann.3.4.2.dylib /usr/local/lib/libopencv_ml.3.4.2.dylib /usr/local/lib/libopencv_plot.3.4.2.dylib /usr/local/lib/libopencv_imgcodecs.3.4.2.dylib /usr/local/lib/libopencv_objdetect.3.4.2.dylib /usr/local/lib/libopencv_imgproc.3.4.2.dylib /usr/local/lib/libopencv_core.3.4.2.dylib";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = C_TEST;
+				SECTORDER_FLAGS = "";
+				SYMROOT = /Users/CHP/ioniq/ioniq_control/build;
+				SYSTEM_HEADER_SEARCH_PATHS = (/usr/local/include,/usr/local/include/opencv);
+				USE_HEADERMAP = NO;
+				WARNING_CFLAGS = ("-Wmost","-Wno-four-char-constants","-Wno-unknown-pragmas","$(inherited)");
+			};
+			name = RelWithDebInfo;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6C83ECD7BEB04134BDCD7C32 /* Build configuration list for PBXNativeTarget "C_TEST" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				875BFFF007694EB3AF630CFA /* Debug */,
+				25F1DB4AC1544312B80E594D /* Release */,
+				44E10882A082428B87CCFFD2 /* MinSizeRel */,
+				FA51900611CC4E12ABEC21FE /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		745D82BE45914520AEEE76BE /* Build configuration list for PBXAggregateTarget "ZERO_CHECK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EE164EAEB7B046FEB9C37FBD /* Debug */,
+				A347C828CDB04E7F92C6F98A /* Release */,
+				07EAC5BEB068475EB1DF473E /* MinSizeRel */,
+				A277E242C8644ECFA68A7FB4 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		8C9AD954814841C081CEEF4B /* Build configuration list for PBXNativeTarget "MAIN" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5B819B8B22CE4F6E92E9EF86 /* Debug */,
+				7B85CB3462734F548D13954C /* Release */,
+				D8E16BFCD69C41F9A4A62628 /* MinSizeRel */,
+				4EA362F68E05419BAE0E3CF5 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		C6A267293C0244C98F5B1473 /* Build configuration list for PBXAggregateTarget "ALL_BUILD" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				26524CB4B9E7490B9927147F /* Debug */,
+				D90A4D3A12A04A62A4639E43 /* Release */,
+				1278F90B0D88487A81C52064 /* MinSizeRel */,
+				F26ADC609DF64E12B8155995 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		D4C7C5A1A0044D7487CFA927 /* Build configuration list for PBXProject "pcan_mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				93DECA6CDB4F4659A9BD714D /* Debug */,
+				03E24CA7CF604CD698EEB539 /* Release */,
+				23447F989CBA4B208B08216A /* MinSizeRel */,
+				96A720DE749E4E86B64B2D29 /* RelWithDebInfo */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 151FEE045D084A92A093BF52 /* Project object */;
+}

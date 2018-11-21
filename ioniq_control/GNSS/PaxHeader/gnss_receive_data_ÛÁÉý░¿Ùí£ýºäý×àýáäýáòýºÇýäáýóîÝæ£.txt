@@ -1,0 +1,2 @@
+83 path=ioniq_control/GNSS/gnss_receive_data_교차로진입전정지선좌표.txt
+27 atime=1542765769.258575

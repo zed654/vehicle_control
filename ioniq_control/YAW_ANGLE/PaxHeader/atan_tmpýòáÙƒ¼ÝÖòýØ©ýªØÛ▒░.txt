@@ -1,0 +1,3 @@
+63 path=ioniq_control/YAW_ANGLE/atan_tmp애러확인증거.txt
+27 mtime=1542013578.772114
+27 atime=1542765769.266575

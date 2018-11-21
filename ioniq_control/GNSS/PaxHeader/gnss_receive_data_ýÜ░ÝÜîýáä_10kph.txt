@@ -1,0 +1,2 @@
+65 path=ioniq_control/GNSS/gnss_receive_data_우회전_10kph.txt
+27 atime=1542765769.262575

@@ -1,0 +1,3 @@
+63 path=ioniq_control/GNSS/gnss_receive_data_시나리오2.txt
+27 mtime=1542011940.186772
+27 atime=1542765769.262575

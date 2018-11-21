@@ -1,0 +1,1 @@
+GNSS heading		dr_yaw_angle		yaw_rate_accum_tmp		steer_angle		str_moving_avg_result		stanley_steering_angle		path_angle		dr_yaw_angle		psi		atan_tmp		s		triangle_area		distance_a		distance_b		distance_c		x_error

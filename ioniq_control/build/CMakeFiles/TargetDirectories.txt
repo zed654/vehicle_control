@@ -1,0 +1,4 @@
+/Users/CHP/ioniq/ioniq_control/build/CMakeFiles/C_TEST.dir
+/Users/CHP/ioniq/ioniq_control/build/CMakeFiles/MAIN.dir
+/Users/CHP/ioniq/ioniq_control/build/CMakeFiles/ALL_BUILD.dir
+/Users/CHP/ioniq/ioniq_control/build/CMakeFiles/ZERO_CHECK.dir

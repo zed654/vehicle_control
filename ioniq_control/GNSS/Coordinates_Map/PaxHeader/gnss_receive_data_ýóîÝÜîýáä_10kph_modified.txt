@@ -1,0 +1,2 @@
+90 path=ioniq_control/GNSS/Coordinates_Map/gnss_receive_data_좌회전_10kph_modified.txt
+27 atime=1542765769.258575
