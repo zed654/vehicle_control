@@ -77,8 +77,16 @@ typedef struct TSR
     int TSR_ymax[4];
 } TSR;
 
+#define RECEIVE_FREQ(hz) 5/hz
+
+
 int main()
 {
+    
+#ifdef RECEIVE_FREQ
+    std::cout << RECEIVE_FREQ(1) << std::endl;
+#endif
+    
     double abc;
     abc = sqrt(0);
     std::cout << abc << std::endl;

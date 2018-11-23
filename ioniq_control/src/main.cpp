@@ -209,7 +209,7 @@ int main(int argc, char** argv)
 
 //    PD_CONTROL pd_control;
 
-    pthread_t p_thread[8];
+    pthread_t p_thread[6];
 
 //#if defined(CAN_CONTROL_ENABLE) || defined(CAN_CHASSIS_ENABLE)
 //    // CAN Read Write
@@ -233,7 +233,6 @@ int main(int argc, char** argv)
 #else
     printf("CAN_CHASSIS_ENABLE is not defined by #define comment\n");
 #endif
-
 
 #ifdef GNSS_ENABLE
     // GNSS Receive
@@ -297,7 +296,7 @@ int main(int argc, char** argv)
 }
 //	  	<arg name="video_stream_provider" value="/home/chp/darknet_ros_ws/src/darknet_ros/darknet_ros/doc/airport.avi" />
 
-#define YAW_ANGLE_WRITE
+//#define YAW_ANGLE_WRITE
 #define __PRINT__
 
 void* Print_Write_thread(void *param)

@@ -56,7 +56,10 @@ void Coordinates_Map_Data()
 //    fin.open("/Users/CHP/ioniq/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_9_18_2.txt");
 //    fin.open("/Users/CHP/ioniq/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_9_18_3.txt");
 //    fin.open("/Users/CHP/ioniq/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_vehicle_speed_5hz.txt");
-    fin.open("../../GNSS/Coordinates_Map/gnss_receive_data_vehicle_speed_5hz.txt");
+//    fin.open("../../GNSS/Coordinates_Map/gnss_receive_data_vehicle_speed_5hz.txt");
+    
+    fin.open("../../GNSS/gnss_receive_data20181123_1.txt");
+    
 #else
     //fin.open("/home/chp/ioniq/vehicle_control/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_9_18_2.txt");
 //    fin.open("/home/chp/ioniq/vehicle_control/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_cbnu_rtk.txt");
@@ -75,8 +78,6 @@ void Coordinates_Map_Data()
     //fin.open("/home/chp/darknet_ros_ws/src/darknet_ros/ioniq_control/GNSS/Coordinates_Map/gnss_receive_data_longitudinal_test.txt");
 
     //fin.open("/home/chp/darknet_ros_ws/src/darknet_ros/ioniq_control/GNSS/Coordinates_Map/gnss_receive_data_rtk_slow.txt");
-
-
 #endif
     
     

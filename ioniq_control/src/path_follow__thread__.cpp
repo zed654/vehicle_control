@@ -211,12 +211,22 @@ void stanley_steering_control()
     /*
      stanley의 x_error 구하기
      */
-    
+
     // 헤론의 공식을 이용해 삼각형 넓이 구하기
+    double dr_x_tmp = dr_x;
+    double dr_y_tmp = dr_y;
+    double vehicle_wheelbase = 2.7; // m
+
+    // 축을 후륜중심에서 전륜 중심으로
+    dr_x_tmp = vehicle_wheelbase * cos(dr_yaw_angle * 3.141592 / 180.) + dr_x;
+    dr_y_tmp = vehicle_wheelbase * sin(dr_yaw_angle * 3.141592 / 180.) + dr_y;
+
+    std::cout << dr_x_tmp - dr_x << "\t\t" << dr_y_tmp - dr_y << std::endl;
+    
     triangle_area = 0;
-    distance_a = calc_two_point_distance(dr_x, dr_y, coord_map[coord_current_address - 1].x, coord_map[coord_current_address - 1].y);
+    distance_a = calc_two_point_distance(dr_x_tmp, dr_y_tmp, coord_map[coord_current_address - 1].x, coord_map[coord_current_address - 1].y);
     distance_b = calc_two_point_distance(coord_map[coord_current_address - 1].x, coord_map[coord_current_address - 1].y, coord_map[coord_current_address].x, coord_map[coord_current_address].y);
-    distance_c = calc_two_point_distance(dr_x, dr_y, coord_map[coord_current_address].x, coord_map[coord_current_address].y);
+    distance_c = calc_two_point_distance(dr_x_tmp, dr_y_tmp, coord_map[coord_current_address].x, coord_map[coord_current_address].y);
     
     s = (distance_a + distance_b + distance_c)/2;
 
@@ -270,6 +280,7 @@ void stanley_steering_control()
 //    k = 1;
     //k = 3.5;        // 7kph에서 gnss_receive_data_9_18_3.txt 주행 가능.
     k = 0.5;         // Straight
+    k = 2.0;
     //k = 0.5;        // 수정 후 k값 (위 3.5는 수정 전)
 //    k = 8;
 //    // 각도별 앵글값 출력

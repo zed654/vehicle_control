@@ -13,6 +13,11 @@
 // Read Coordinates Map Data
 //void Coordinates_Map_Data();
 
+//#define RECEIVE_FREQ(hz) 5/hz
+//
+//#ifdef RECEIVE_FREQ(5)
+//#endif
+#define RECEIVE_FREQ(hz) 5/hz
 
 void* GNSS_Receive(void *gnss_error_flag_)
 {
@@ -26,7 +31,7 @@ void* GNSS_Receive(void *gnss_error_flag_)
     std::ofstream fin;
 
 #ifdef __APPLE__
-    fin.open("../../gnss_receive_data.txt");
+    fin.open("../../GNSS/gnss_receive_data.txt");
 #else
     //fin.open("../c++/gnss_receive_data.txt");
     fin.open("/home/chp/darknet_ros_ws/src/darknet_ros/ioniq_control/GNSS/gnss_receive_data.txt");
@@ -39,6 +44,9 @@ void* GNSS_Receive(void *gnss_error_flag_)
     ublox_parser cUblox(GNSS_PORT_PATH, GNSS_BAUD_RATE);
     ublox_parser::PARSING_TYPEDEF_UBX_M8P_PVT globalPVT;
     
+#ifdef RECEIVE_FREQ
+    int GNSS_Hz_count = 0;
+#endif
     
     while (cUblox.isInit)
     {
@@ -55,6 +63,11 @@ void* GNSS_Receive(void *gnss_error_flag_)
         
         if (cUblox.valid() == ublox_parser::PARSING_SUCCESS_)
         {
+#ifdef RECEIVE_FREQ
+            GNSS_Hz_count++;
+            
+            if(GNSS_Hz_count == RECEIVE_FREQ(5)) // RECEIVE_FREQ(Hz)
+            {
             cUblox.copyTo(&globalPVT);
 //            std::cout << std::fixed;
 //            std::cout.precision(8);
@@ -91,10 +104,33 @@ void* GNSS_Receive(void *gnss_error_flag_)
             double base_longitude_tmp = base_longitude;//127.45667630;   //base_longitude;
             // k-city offset ;; x = 300, y = 120
             // ochang offset : x = 30, y = 10
-            gnss_x =(globalPVT.lat - base_latitude_tmp)* 10000000 * 0.888 / 100. + 30;//100; // Visualize를 위해 (0, 0)으로부터 좌표이동도 추가
-            gnss_y =(globalPVT.lon - base_longitude_tmp) * 10000000 * 1.1 / 100. + 10;//30;  // Visualize를 위해 (0, 0)으로부터 좌표이동도 추가
-            gnss_yaw_angle = globalPVT.headMot;
-            GNSS_heading = globalPVT.headMot;
+        
+
+
+                gnss_x =(globalPVT.lat - base_latitude_tmp)* 10000000 * 0.888 / 100. + 30;//100; // Visualize를 위해 (0, 0)으로부터 좌표이동도 추가
+                gnss_y =(globalPVT.lon - base_longitude_tmp) * 10000000 * 1.1 / 100. + 10;//30;  // Visualize를 위해 (0, 0)으로부터 좌표이동도 추가
+                gnss_yaw_angle = globalPVT.headMot;
+                GNSS_heading = globalPVT.headMot;
+                GNSS_Hz_count = 0;
+                //std::cout << GNSS_Hz_count << std::endl;
+                
+#ifdef OpenCV_View_MAP
+                // viewer에 그리기
+                cv::Point dot(gnss_x*4, gnss_y*4);
+                cv::circle(img, dot, 6, CvScalar(255,255,255));
+                
+                //            count_gnss++;
+                //            printf("count_gnss = %d\n", count_gnss);
+                
+                //            img.data[(int)(gnss_y*4) * img.cols + (int)(gnss_x*4)] = 255;
+                // imshow는 main()에서. thread에서는 imshow 애러뜸.
+#endif
+            }
+#endif
+//            gnss_x =(globalPVT.lat - base_latitude_tmp)* 10000000 * 0.888 / 100. + 30;//100; // Visualize를 위해 (0, 0)으로부터 좌표이동도 추가
+//            gnss_y =(globalPVT.lon - base_longitude_tmp) * 10000000 * 1.1 / 100. + 10;//30;  // Visualize를 위해 (0, 0)으로부터 좌표이동도 추가
+//            gnss_yaw_angle = globalPVT.headMot;
+//            GNSS_heading = globalPVT.headMot;
 
             //std::cout << gnss_x << "\t\t" << gnss_y << std::endl;
             
@@ -102,17 +138,7 @@ void* GNSS_Receive(void *gnss_error_flag_)
             //            std::cout.precision(2);
             //            std::cout<< gnss_x << "\t\t" << gnss_y << "\t\t" << gnss_yaw_angle << "\t\t" << "GNSS" << std::endl;
             
-#ifdef OpenCV_View_MAP
-            // viewer에 그리기
-            cv::Point dot(gnss_x*4, gnss_y*4);
-            cv::circle(img, dot, 6, CvScalar(255,255,255));
-            
-            //            count_gnss++;
-            //            printf("count_gnss = %d\n", count_gnss);
-            
-            //            img.data[(int)(gnss_y*4) * img.cols + (int)(gnss_x*4)] = 255;
-            // imshow는 main()에서. thread에서는 imshow 애러뜸.
-#endif
+
 
 //            if(vehicle_yaw_rate_error_correct == 1)
 //                std::cout << "target_vehicle_speed = " << target_vehicle_speed << "\t\tvehicle_speed =" << current_vehicle_speed << std::endl;

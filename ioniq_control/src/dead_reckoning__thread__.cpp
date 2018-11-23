@@ -15,7 +15,8 @@
 //void Coordinates_Map_Data();
 
 #define DOT_STEERING_MODEL
-//#define ACKERMANN_STEERING_BICYCLE_MODEL
+//#define ACKERMANN_STEERING_BICYCLE_MODEL // Not working
+//#define KINEMATIC_BICYCLE_MODEL
 //#define ONLY_DGPS
 
 //#define YAW_ANGLE_WRITE
@@ -32,7 +33,13 @@ void* Dead_Reckoning(void *DR_error_flag_)
 
 #ifdef YAW_ANGLE_WRITE
     std::ofstream fin;
+    
+#ifdef __APPLE__
+    fin.open("../../YAW_ANGLE/yaw_angle_save.txt");
+#else
     fin.open("/home/chp/darknet_ros_ws/src/darknet_ros/ioniq_control/YAW_ANGLE/yaw_angle_save.txt");
+#endif
+    
 #endif
     while(1)
     {
@@ -47,28 +54,18 @@ void* Dead_Reckoning(void *DR_error_flag_)
             
 //            usleep(100);
             
-            
-            
+#if defined(DOT_STEERING_MODEL) || defined(ACKERMANN_STEERING_BICYCLE_MODEL)// || defined(BICYCLE_MODEL)
             // Dead reckoning
             // 시간 기준은 GNSS thread의 elapsedTime으로 잡음. 해당 갱신이 chassis CAN의 갱신보다 빠르면 약간의 오차가 발생함. 나중에 mutex로 잡으면 될 듯.
             
             // Dead Reckoning으로 yaw_angle 구하기
             //  rad/s?? degree/s?? * ms
             //  우선 deg/s로 계산 --> 환산하면 1/1000 deg / ms
+            // 1deg/s = 1deg/1000ms
+            
             //  얘 단위 수정해야함. **********************************************
-
             if(vehicle_yaw_rate_error_correct == 1)
                 dr_yaw_rate_integral_val = -vehicle_yaw_rate / 1000 * elapsedTime;
-            
-            
-            //            printf("elapsedTime = %f\n", elapsedTime);
-            //            printf("vehicle_yaw_rate = %f\n", vehicle_yaw_rate);
-            //            printf("dr_yaw_rate_integral_val = %f\n", dr_yaw_rate_integral_val);
-            
-            //            printf("steering angle = %f\n", vehicle_steering_angle);    // 1도당 0.0819도
-            
-            //            printf("gnss_yaw_angle = %f\n", gnss_yaw_angle);
-            
             
             // steering angle 기반 dr yaw angle (재대로 계산)
 //            steering_angle.push(vehicle_steering_angle * 0.06);//0.09);
@@ -103,13 +100,15 @@ void* Dead_Reckoning(void *DR_error_flag_)
 //            std::cout << "dr_yaw_angle = " << dr_yaw_angle << "\t\tyar_rate_accum_tmp = " << yaw_rate_accum_tmp << "\t\tdr_yaw_rate_integral_val = "<< dr_yaw_rate_integral_val << "\t\tvehicle_yaw_rate = "<< vehicle_yaw_rate << std::endl;
             
 //            printf("dr_yaw_angle = %f\n", dr_yaw_angle);
-            
+#endif
 
             
-#ifdef DOT_STEERING_MODEL
+#ifdef DOT_STEERING_MODEL // Coord 기준 : GNSS 설치 위치
             // x축 변화량 구하기 (elapsedTime을 이용해 적분 효과)
             // current_vehicle_speed가 kph이므로 m/ms로 바꾸려면 3600을 나눠주면 됨.
-            delta_dr_x = elapsedTime * (double)current_vehicle_speed / 3600. * cos(3.1415926 / 180. * dr_yaw_angle);
+//            delta_dr_x = elapsedTime * (double)current_vehicle_speed / 3600. * cos(3.1415926 / 180. * dr_yaw_angle); // (m/ms)
+            delta_dr_x = (double)current_vehicle_speed / 3600. * cos(3.1415926 / 180. * dr_yaw_angle); // (m/ms)
+
 //            delta_dr_x = elapsedTime * (double)current_vehicle_speed / 3600. * cos(3.1415926 / 180. * (gnss_yaw_angle - vehicle_steering_angle * 0.09));
             
 //            printf("current_vehicle_speed = %d\n", current_vehicle_speed);
@@ -119,7 +118,7 @@ void* Dead_Reckoning(void *DR_error_flag_)
             //            printf("cos(3.1415926 / 180 * dr_yaw_angle) = %f\n", cos(3.1415926 / 180. * dr_yaw_angle));
             
             // 기존 x좌표에 x축 변화량 더하기
-            gnss_x += delta_dr_x;
+            gnss_x += (delta_dr_x * elapsedTime);
             dr_x = gnss_x;// + delta_dr_x;
             
             //            dr_hard_x += delta_dr_x;
@@ -128,12 +127,12 @@ void* Dead_Reckoning(void *DR_error_flag_)
             
             // y축 변화량 구하기 (elapsedTime을 이용해 적분 효과)
             // current_vehicle_speed가 kph이므로 m/ms로 바꾸려면 3600을 나눠주면 됨.
-            delta_dr_y = elapsedTime * (double)current_vehicle_speed / 3600. * sin(3.1415926 / 180. * dr_yaw_angle);//cos(3.1415926 / 180. * (90. - dr_yaw_angle));
+            delta_dr_y = (double)current_vehicle_speed / 3600. * sin(3.1415926 / 180. * dr_yaw_angle);//cos(3.1415926 / 180. * (90. - dr_yaw_angle));
 //            delta_dr_y = elapsedTime * (double)current_vehicle_speed / 3600. * sin(3.1415926 / 180. * (gnss_yaw_angle - vehicle_steering_angle * 0.09));
             //cos(3.1415926 / 180. * (90. - (gnss_yaw_angle - vehicle_steering_angle * 0.0819)));
             
             // 기존 y좌표에 y축 변화량 더하기
-            gnss_y += delta_dr_y;
+            gnss_y += (delta_dr_y * elapsedTime);
             dr_y = gnss_y;// + delta_dr_y;
             
             //            dr_hard_y += delta_dr_y;
@@ -161,10 +160,10 @@ void* Dead_Reckoning(void *DR_error_flag_)
             delta_dr_y = (a3 * dr_x + a4 * dr_y) - dr_y;
             
             // 기존 x좌표에 x축 변화량 더하기
-            gnss_x += delta_dr_x;
+            gnss_x += (delta_dr_x * elapsedTime);
             dr_x = gnss_x;// + delta_dr_x;
             
-            gnss_y += delta_dr_y;
+            gnss_y += (delta_dr_y * elapsedTime);
             dr_y = gnss_y;// + delta_dr_y;
 
              //최종 출력 : dr_yaw_angle, dr_x, dr_y
@@ -179,8 +178,48 @@ void* Dead_Reckoning(void *DR_error_flag_)
             dr_y = gnss_y;
 #endif
 
-#ifdef OpenCV_View_MAP
+#ifdef KINEMATIC_BICYCLE_MODEL // No IMS, Coord 기준 : 무게중심 ?
+            double KBM_l_r = 1.57;//1.35; // m
+            double KBM_l_f = 1.13;//1.35; // m
             
+            steer_angle = steer_angle > 30 ? 30 : steer_angle;
+            steer_angle = steer_angle < -30 ? -30 : steer_angle;
+            
+            double KBM_beta = atan(KBM_l_r / (KBM_l_r + KBM_l_f) * tan(3.1415926 / 180. * steer_angle * 30 / 500)) * 180. / 3.1415926;
+            
+            double KBM_psi_delta = (double)current_vehicle_speed / 3600 / KBM_l_r * sin(3.1415926 / 180. * KBM_beta);// * 180. / 3.141592;
+            
+            double KBM_psi = KBM_psi_delta * elapsedTime;    // KBM_psi_delta 부호, KBM_psi_delta를 deg/s로 가정 -> 1deg/s = 1deg/1,000ms
+//            yaw_rate_accum_tmp += KBM_psi;
+            
+            // Method 1
+            if(vehicle_yaw_rate_error_correct == 1)
+                gnss_yaw_angle = gnss_yaw_angle + KBM_psi;
+            dr_yaw_angle = gnss_yaw_angle;
+            
+            delta_dr_x = (double)current_vehicle_speed / 3600 * cos(3.1415926 / 180. * (dr_yaw_angle + KBM_beta)); // m/ms
+            // 기존 x좌표에 x축 변화량 더하기
+            gnss_x += (delta_dr_x * elapsedTime);
+            dr_x = gnss_x;// + delta_dr_x;
+            
+            delta_dr_y = (double)current_vehicle_speed / 3600 * sin(3.1415926 / 180. * (dr_yaw_angle + KBM_beta)); // m/ms
+            // 기존 x좌표에 x축 변화량 더하기
+            gnss_y += (delta_dr_y * elapsedTime);
+            dr_y = gnss_y;// + delta_dr_x;
+            
+//            // Method 2
+//            delta_dr_x = (double)current_vehicle_speed / 3600 * cos(3.1415926 / 180. * (KBM_psi + KBM_beta)); // m/ms
+//            // 기존 x좌표에 x축 변화량 더하기
+//            gnss_x += (delta_dr_x * elapsedTime);
+//            dr_x = gnss_x;// + delta_dr_x;
+//
+//            delta_dr_y = (double)current_vehicle_speed / 3600 * sin(3.1415926 / 180. * (KBM_psi + KBM_beta)); // m/ms
+//            // 기존 x좌표에 x축 변화량 더하기
+//            gnss_y += (delta_dr_y * elapsedTime);
+//            dr_y = gnss_y;// + delta_dr_x;
+#endif
+            
+#ifdef OpenCV_View_MAP
             //            pthread_mutex_lock(&mutex); // 잠금을 생성한다.
             // opencv viewer에 그릴 좌표 설정
             opencv_x = dr_x * 4;
@@ -204,7 +243,6 @@ void* Dead_Reckoning(void *DR_error_flag_)
 #endif
             
 #ifdef YAW_ANGLE_WRITE
-
             fin << std::fixed;
             fin.precision(8);
             fin << "GNSS heading" << "\t\t" << "dr_yaw_angle" << "\t\t" << "yaw_rate_accum_tmp" << std::endl;
@@ -214,10 +252,9 @@ void* Dead_Reckoning(void *DR_error_flag_)
         fin.precision(8);
         fin << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << std::endl;
 
-        std::cout << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << std::endl;
+        //std::cout << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << std::endl;
     }
     usleep(100000);
-
 #endif
 
             // finish timer

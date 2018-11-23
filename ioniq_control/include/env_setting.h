@@ -18,7 +18,7 @@
 #define PCAN_BAUD_RATE PCAN_BAUD_500K
 
 // GNSS device env setting
-#define GNSS_PORT_PATH "/dev/tty.usbmodem146231"
+#define GNSS_PORT_PATH "/dev/tty.usbmodem1442210"
 #define GNSS_BAUD_RATE 9600
 
 
@@ -44,9 +44,9 @@
 #endif  // __APPLE__
 
 // Thread enable definition (CAN, GNSS)
-//#define CAN_CONTROL_ENABLE
-//#define CAN_CHASSIS_ENABLE
-//#define GNSS_ENABLE
+#define CAN_CONTROL_ENABLE
+#define CAN_CHASSIS_ENABLE
+#define GNSS_ENABLE
 
 //GNSS data write
 #define GNSS_DATA_WRITE
