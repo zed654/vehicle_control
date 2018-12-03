@@ -14,6 +14,9 @@
 //#include "TSR_receive.h"
 #include <queue>
 
+#define STANLEY_STEERING_CONTROL
+#define PURE_PURSUIT_STEERING_CONTROL
+
 //#define LATERAL_CONTROL_PRINT
 #define STEERING_ANGLE_MOVING_AVG
 
@@ -25,6 +28,7 @@
 void waypoint_change();
 void longitude_control();
 void stanley_steering_control();
+void pure_pursuit_steering_control();
 double calc_two_point_distance(double x_1_, double y_1_, double x_2_, double y_2_);
 int rover_steering_angle_direction();  // 차량(Rover)가 진행 방향의 좌측인지 우측인지 확인하는 함수
 
@@ -65,6 +69,7 @@ void* path_follow(void *flag)
     while(stanley_steering_control_enable_flag == 1)
     {
 
+#ifdef STANLEY_STEERING_CONTROL
         // 추종 waypoint path를 바꿔주는 코드
         waypoint_change();
         
@@ -86,35 +91,26 @@ void* path_follow(void *flag)
         // CPU 과부하 방지
         //usleep(20000);
         usleep(1);
+#endif
+        
+#ifdef PURE_PURSUIT_STEERING_CONTROL
+        waypoint_change();
+        longitude_control();
+        pure_pursuit_steering_control();
+        usleep(1);
+#endif
     }
     
 //    return 0;
 }
 
-void longitude_control()
-{
-
-    target_vehicle_speed = coord_map[coord_current_address].WP_target_speed;
-
-    //    if(vehicle_yaw_rate_error_correct == 1)
-//        std::cout << "target_vehicle_speed = " << target_vehicle_speed << "\t\tvehicle_speed =" << current_vehicle_speed << std::endl;
-    
-    // S_t, K_p, K_d는 상수, S_r은 실시간 CAN receive data. S_r에 뮤텍스(mutex) 들어갈 수 도 있음.
-    if(speed_pid_control_enable_flag == 1)
-    {
-        aReqMax_Cmd = pd_control.MV_Cal_Func(target_vehicle_speed, current_vehicle_speed, K_p, K_d);
-        aReqMax_Cmd = aReqMax_Cmd > 5 ? 5 : aReqMax_Cmd;
-        aReqMax_Cmd = aReqMax_Cmd < -5 ? -5 : aReqMax_Cmd;
-    }
-}
-
-
-
-
 
 
 void waypoint_change()
 {
+    double Rover2WP_standard_distance = 3.5;
+    double Rover2WP_standard_angle = 80;
+    
     // Rover좌표(DR_x, DR_y)와 WayPoint좌표(coord_map[address].x, coord_map[address].y)
     Rover2WP_distance = calc_two_point_distance(coord_map[coord_current_address].x, coord_map[coord_current_address].y, dr_x, dr_y);
 
@@ -129,10 +125,10 @@ void waypoint_change()
         차량과 좌표의 각 ( GNSS기준 ) -> 좌표계 이동
      cos(3.1415926 / 180. * dr_yaw_angle)
      */
-    double theta_tmp;
-    theta_tmp = dr_yaw_angle;
-    double x_tmp = cos(3.1415926 / 180. * -theta_tmp) * (coord_map[coord_current_address].x - dr_x) - sin(3.1415926 / 180. * -theta_tmp) * (coord_map[coord_current_address].y - dr_y);
-    double y_tmp = sin(3.1415926 / 180. * -theta_tmp) * (coord_map[coord_current_address].x - dr_x) + cos(3.1415926 / 180. * -theta_tmp) * (coord_map[coord_current_address].y - dr_y);
+    double dr_yaw_angle_tmp = dr_yaw_angle;
+    
+    double x_tmp = cos(3.1415926 / 180. * -dr_yaw_angle_tmp) * (coord_map[coord_current_address].x - dr_x) - sin(3.1415926 / 180. * -dr_yaw_angle_tmp) * (coord_map[coord_current_address].y - dr_y);
+    double y_tmp = sin(3.1415926 / 180. * -dr_yaw_angle_tmp) * (coord_map[coord_current_address].x - dr_x) + cos(3.1415926 / 180. * -dr_yaw_angle_tmp) * (coord_map[coord_current_address].y - dr_y);
     
     double angle_tmp = abs(atan2(y_tmp, x_tmp) * 180 / 3.1415926);
     
@@ -141,10 +137,7 @@ void waypoint_change()
 //    std::cout << "angle_tmp = " << angle_tmp << std::endl;
     // Rover와 Waypoint의 거리가 1m보다 짧으면 다음 Waypoint로 이동
 //    if(Rover2WP_distance < 1.5) // 1은 1m
-    if((  (Rover2WP_distance < 3.5)&&(angle_tmp > 80))) //(Rover2WP_distance < 0.5) ||
-    {
-        coord_current_address++;
-    }
+    if((  (Rover2WP_distance < Rover2WP_standard_distance) && (angle_tmp > Rover2WP_standard_angle)  )) coord_current_address++;
     
 //    std::cout << "Rover2WP_distance = " << Rover2WP_distance << std::endl;
 //    std::cout << "coord_current_address = " << coord_current_address << std::endl;
@@ -172,6 +165,24 @@ void waypoint_change()
 
 
 
+void longitude_control()
+{
+    float aReqMax_Cmd_tmp = 0;
+    
+    target_vehicle_speed = coord_map[coord_current_address].WP_target_speed;
+    
+    //    if(vehicle_yaw_rate_error_correct == 1)
+    //        std::cout << "target_vehicle_speed = " << target_vehicle_speed << "\t\tvehicle_speed =" << current_vehicle_speed << std::endl;
+    
+    // S_t, K_p, K_d는 상수, S_r은 실시간 CAN receive data. S_r에 뮤텍스(mutex) 들어갈 수 도 있음.
+    if(speed_pid_control_enable_flag == 1)
+    {
+        aReqMax_Cmd_tmp = pd_control.MV_Cal_Func(target_vehicle_speed, current_vehicle_speed, K_p, K_d);
+        aReqMax_Cmd = aReqMax_Cmd_tmp > 5 ? 5 : aReqMax_Cmd_tmp;
+        aReqMax_Cmd = aReqMax_Cmd_tmp < -5 ? -5 : aReqMax_Cmd_tmp;
+    }
+}
+
 
 
 
@@ -192,7 +203,7 @@ void stanley_steering_control()
     
     // 스티어앵글각도   = 프사이(t) + arctan(k * x(t) / 차량속도)
     //              = heading - path_angle + arctan(k * x(t) / 차량속도)
-    //              스티어앵글각도는 최대 45도라고 가정한다. -> 1값당 0.09도
+    //              스티어앵글각도는 최대 30도라고 가정한다. -> 1값당 0.06도
     
     
     
@@ -205,24 +216,24 @@ void stanley_steering_control()
 //    // 현재차량속도 : current_vehicle_speed    // 단위는 안맞춰줘도 됨. (k 파라미터 때문)
 //    // 해딩 앵글 : dr_yaw_angle
     
+    // 사용할 변수 불러오기 (불러오는 이유는 계산 도중 값이 변해버리면 안되기 때문에)
+    double dr_x_tmp = dr_x;
+    double dr_y_tmp = dr_y;
+    double dr_yaw_angle_tmp = dr_yaw_angle;
+    int steer_angle_tmp = 0;
     
-    
-    
+    // 제어기준을 후륜중심에서 전륜중심으로
+    double vehicle_wheelbase = 2.7; // 휠베이스 길이, m
+    dr_x_tmp = vehicle_wheelbase * cos(dr_yaw_angle_tmp * 3.141592 / 180.) + dr_x;
+    dr_y_tmp = vehicle_wheelbase * sin(dr_yaw_angle_tmp * 3.141592 / 180.) + dr_y;
+    //std::cout << dr_x_tmp - dr_x << "\t\t" << dr_y_tmp - dr_y << std::endl;           // 제어기준 옮긴 정보 확인용도
+
+
     /*
-     stanley의 x_error 구하기
+     * stanley의 x_error 구하기
      */
 
     // 헤론의 공식을 이용해 삼각형 넓이 구하기
-    double dr_x_tmp = dr_x;
-    double dr_y_tmp = dr_y;
-    double vehicle_wheelbase = 2.7; // m
-
-    // 축을 후륜중심에서 전륜 중심으로
-    dr_x_tmp = vehicle_wheelbase * cos(dr_yaw_angle * 3.141592 / 180.) + dr_x;
-    dr_y_tmp = vehicle_wheelbase * sin(dr_yaw_angle * 3.141592 / 180.) + dr_y;
-
-    std::cout << dr_x_tmp - dr_x << "\t\t" << dr_y_tmp - dr_y << std::endl;
-    
     triangle_area = 0;
     distance_a = calc_two_point_distance(dr_x_tmp, dr_y_tmp, coord_map[coord_current_address - 1].x, coord_map[coord_current_address - 1].y);
     distance_b = calc_two_point_distance(coord_map[coord_current_address - 1].x, coord_map[coord_current_address - 1].y, coord_map[coord_current_address].x, coord_map[coord_current_address].y);
@@ -245,7 +256,7 @@ void stanley_steering_control()
     
     
     /*
-     psi 구하기
+     * psi 구하기
      */
     
     // (0, 0), (axis_mv_x, axis_mv_y)로 path_angle 구하기
@@ -257,15 +268,15 @@ void stanley_steering_control()
     
 //    dr_yaw_angle = 0;      //지워야함
 //    path_angle = 90;        //지워야함
-    psi = path_angle - dr_yaw_angle;    // Path와 평행이 되도록 vehicle steer angle을 맞춰준다.
+    double psi_tmp = path_angle - dr_yaw_angle_tmp;    // Path와 평행이 되도록 vehicle steer angle을 맞춰준다.
                                         // 따라서 경우에 따라 +, - 모두 가능.
 //    psi = path_angle - gnss_yaw_angle;    // 실제로 차량의 요 레이트 앵글을 넣어야하는데, 현재 스티어링이 들어가있다.
                                         // 즉, 스티어링이 변화하면서 차량이 실제로 움직이지 않았는대
                                         //      헤딩이 움직이는 결과를 가져와서 결과가 계속 변하므로 우선은 gnss 헤딩을 넣는다.
 
     
-    psi = psi > 180 ? (360-psi) : psi;
-    psi = psi < -180 ? (360 + psi) : psi;
+    psi = psi_tmp > 180 ? (360-psi_tmp) : psi_tmp;
+    psi = psi_tmp < -180 ? (360 + psi_tmp) : psi_tmp;
     
     
     
@@ -287,22 +298,24 @@ void stanley_steering_control()
 //    for(int i = 0; i <= 360; i++)
 //    {
 //        psi = path_angle - dr_yaw_angle;    // Path와 평행이 되도록 vehicle steer angle을 맞춰준다.
-//        double atan_tmp =atan(k * x_error / current_vehicle_speed) * 180 / 3.1415926;
+//        double stanley_atan =atan(k * x_error / current_vehicle_speed) * 180 / 3.1415926;
 //        int direction_tmp = rover_steering_angle_direction();          // 차량(Rover)가 진행 방향의 좌측인지, 우측인지 구분하기 위한 함수
-//        atan_tmp *= (double)direction_tmp;
-//        stanley_steering_angle = psi + atan_tmp;
+//        stanley_atan *= (double)direction_tmp;
+//        stanley_steering_angle = psi + stanley_atan;
 //        std::cout << "stanley_steering_angle = " << stanley_steering_angle << "\t\tdr_yaw_angle = " << dr_yaw_angle << "\t" << stanley_steering_angle + dr_yaw_angle << std::endl;
 //        dr_yaw_angle++;
 //    }
 
     
     // x_error를 cm단위로 변환 후, 제곱해주어 멀어질수록 더 각변화를 심화시킴
-//    double atan_tmp =atan(k/10000 * (x_error * 100) * (x_error * 100)  / (current_vehicle_speed+5)) * 180 / 3.1415926;
+//    double stanley_atan =atan(k/10000 * (x_error * 100) * (x_error * 100)  / (current_vehicle_speed+5)) * 180 / 3.1415926;
     double offset_speed = 5; // 기존엔 5였음.
-    atan_tmp =atan(k * x_error / (current_vehicle_speed + offset_speed)) * 180 / 3.1415926;
+    double stanley_atan_tmp = 0;
+    stanley_atan_tmp =atan(k * x_error / (current_vehicle_speed + offset_speed)) * 180 / 3.1415926;
     int direction_tmp = rover_steering_angle_direction();          // 차량(Rover)가 진행 방향의 좌측인지, 우측인지 구분하기 위한 함수
-    atan_tmp *= (double)direction_tmp;
-    stanley_steering_angle = -(psi + atan_tmp);
+    stanley_atan_tmp *= (double)direction_tmp;
+    stanley_atan = stanley_atan_tmp;
+    stanley_steering_angle = -(psi + stanley_atan);
     
 
     // stanley_steering_angle이 음수면 양수로 바꿔주기
@@ -327,7 +340,7 @@ void stanley_steering_control()
         }
         str_moving_avg_tmp[str_moving_avg_num-1] = stanley_steering_angle;
 
-//        std::cout << psi << "\t1\t" << atan_tmp << "\t\t" << current_vehicle_speed << std::endl;
+//        std::cout << psi << "\t1\t" << stanley_atan << "\t\t" << current_vehicle_speed << std::endl;
 //        std::cout << stanley_steering_angle << std::endl;
 //        std::cout << "===============================================" << std::endl;
 //        str_moving_avg_tmp[0] = str_moving_avg_tmp[1];
@@ -347,18 +360,18 @@ void stanley_steering_control()
 
 //        str_moving_avg_result = (str_moving_avg_tmp[0] + str_moving_avg_tmp[1] + str_moving_avg_tmp[2] + str_moving_avg_tmp[3] + str_moving_avg_tmp[4]) / 5;
 
-        steer_angle = str_moving_avg_result * 500/30;
+        steer_angle_tmp = str_moving_avg_result * 500/30;
 
         // 클리핑
-        steer_angle = steer_angle > 500 ? 500 : steer_angle;
-        steer_angle = steer_angle < -500 ? -500 : steer_angle;
+        steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
+        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle_tmp;
 #elif
         // 스티어링 1도에 바퀴 0.06도 회전으로 계산.
-        steer_angle = stanley_steering_angle * 500/30;
+        steer_angle_tmp = stanley_steering_angle * 500/30;
 
         // 클리핑
-        steer_angle = steer_angle > 500 ? 500 : steer_angle;
-        steer_angle = steer_angle < -500 ? -500 : steer_angle;
+        steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
+        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle_tmp;
 #endif
     }
 
@@ -367,15 +380,15 @@ void stanley_steering_control()
     std::cout << stanley_steering_angle << "\t\t" << steer_angle << std::endl;
 #endif
     // 추종 각도 (동일한 x_error, 속도에서 차량의 헤딩이 변해도 경로를 추종하기 위해 접근하는 각도가 동일하다.)
-    double follow_angle = stanley_steering_angle + dr_yaw_angle;
+    double follow_angle = stanley_steering_angle + dr_yaw_angle_tmp;
     //    std::cout << "follow angle : " << follow_angle << std::endl;
 //    std::cout << "x_error : " << x_error << std::endl;
 //    std::cout << "stanley_steering_angle = " << stanley_steering_angle << std::endl;
 //    std::cout << "distance_a = " << distance_a << std::endl;
 //    std::cout << "distance_b = " << distance_b << std::endl;
 //    std::cout << "distance_c = " << distance_c << std::endl;
-//    std::cout << "path_angle = " << path_angle <<"\t\tpsi = " << psi  << "\t\tatan_tmp = " << atan_tmp << "\t\tst_angle = " << stanley_steering_angle << "\t\tx_error = " << x_error << std::endl;
-//    std::cout << "atan_tmp = " << atan_tmp << std::endl;
+//    std::cout << "path_angle = " << path_angle <<"\t\tpsi = " << psi  << "\t\tstanley_atan = " << stanley_atan << "\t\tst_angle = " << stanley_steering_angle << "\t\tx_error = " << x_error << std::endl;
+//    std::cout << "stanley_atan = " << stanley_atan << std::endl;
 //    std::cout << "gnss_yaw_angle = " << gnss_yaw_angle << std::endl;
 
     
@@ -383,7 +396,10 @@ void stanley_steering_control()
     int avsdcds;
 }
 
-
+void pure_pursuit_steering_control()
+{
+    
+}
 
 int rover_steering_angle_direction()
 {

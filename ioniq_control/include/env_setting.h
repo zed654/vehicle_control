@@ -44,9 +44,9 @@
 #endif  // __APPLE__
 
 // Thread enable definition (CAN, GNSS)
-#define CAN_CONTROL_ENABLE
-#define CAN_CHASSIS_ENABLE
-#define GNSS_ENABLE
+//#define CAN_CONTROL_ENABLE
+//#define CAN_CHASSIS_ENABLE
+//#define GNSS_ENABLE
 
 //GNSS data write
 #define GNSS_DATA_WRITE
@@ -169,7 +169,7 @@ extern unsigned char CAN_alive_count;
 // Path follow
 extern int coord_current_address;
 extern double str_moving_avg_result;
-extern double atan_tmp;
+extern double stanley_atan;
 extern double stanley_steering_angle;      // 최종 출력값
 extern double psi;                         // degree 단위
 extern double s;

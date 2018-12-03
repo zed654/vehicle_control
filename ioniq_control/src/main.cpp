@@ -146,7 +146,7 @@ bool vehicle_yaw_rate_error_correct = 0;    // 애러 보정이 완료됬다는 
 // Path follow
 int coord_current_address = 1;
 double str_moving_avg_result = 0;
-double atan_tmp = 0;
+double stanley_atan = 0;
 double stanley_steering_angle = 0;      // 최종 출력값
 double psi = 0;                         // degree 단위
 double s = 0;
@@ -313,7 +313,7 @@ void* Print_Write_thread(void *param)
     
     fin << std::fixed;
     fin.precision(8);
-    fin << "GNSS heading" << "\t\t" << "dr_yaw_angle" << "\t\t" << "yaw_rate_accum_tmp" << "\t\tsteer_angle" << "\t\tstr_moving_avg_result" << "\t\tstanley_steering_angle" << "\t\tpath_angle" << "\t\tdr_yaw_angle" << "\t\tpsi" << "\t\tatan_tmp" << "\t\ts" << "\t\ttriangle_area" <<  "\t\tdistance_a" << "\t\tdistance_b" << "\t\tdistance_c" << "\t\tx_error" << std::endl;
+    fin << "GNSS heading" << "\t\t" << "dr_yaw_angle" << "\t\t" << "yaw_rate_accum_tmp" << "\t\tsteer_angle" << "\t\tstr_moving_avg_result" << "\t\tstanley_steering_angle" << "\t\tpath_angle" << "\t\tdr_yaw_angle" << "\t\tpsi" << "\t\tstanley_atan" << "\t\ts" << "\t\ttriangle_area" <<  "\t\tdistance_a" << "\t\tdistance_b" << "\t\tdistance_c" << "\t\tx_error" << std::endl;
 #endif
     
     while(1)
@@ -324,7 +324,7 @@ void* Print_Write_thread(void *param)
     {
         fin << std::fixed;
         fin.precision(8);
-        fin << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << "\t\t" << str_moving_avg_result  << "\t\t" << stanley_steering_angle << "\t\t" << path_angle << "\t\t" << dr_yaw_angle << "\t\t" << psi << "\t\t" << atan_tmp << "\t\t" << s << "\t\t" << triangle_area << "\t\t" << distance_a << "\t\t" << distance_b << "\t\t" << distance_c << "\t\t" << x_error << std::endl;
+        fin << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << "\t\t" << str_moving_avg_result  << "\t\t" << stanley_steering_angle << "\t\t" << path_angle << "\t\t" << dr_yaw_angle << "\t\t" << psi << "\t\t" << stanley_atan << "\t\t" << s << "\t\t" << triangle_area << "\t\t" << distance_a << "\t\t" << distance_b << "\t\t" << distance_c << "\t\t" << x_error << std::endl;
         std::cout << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << std::endl;
     }
 #endif
