@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "void std::__1::allocator_traits&lt;std::__1::allocator&lt;double&gt; &gt;::construct&lt;double, double&gt;(std::__1::allocator&lt;double&gt;&amp;, double*, double const&amp;) [inlined]:memory">
+         <PersistentStrings>
+            <PersistentString
+               value = "KKK">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

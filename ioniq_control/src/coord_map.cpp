@@ -58,7 +58,12 @@ void Coordinates_Map_Data()
 //    fin.open("/Users/CHP/ioniq/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_vehicle_speed_5hz.txt");
 //    fin.open("../../GNSS/Coordinates_Map/gnss_receive_data_vehicle_speed_5hz.txt");
     
-    fin.open("../../GNSS/gnss_receive_data20181123_1.txt");
+//    fin.open("../../GNSS/gnss_receive_data20181123_1.txt");
+//    fin.open("../../GNSS/gnss_receive_data_1205.txt");
+    fin.open("../../GNSS/gnss_receive_data_1205_2.txt");
+//    fin.open("../../GNSS/gnss_receive_data_1205_3.txt");
+//    fin.open("../../GNSS/gnss_receive_data_1205_55.txt");
+//    fin.open("../../GNSS/gnss_receive_data_error_2.txt");
     
 #else
     //fin.open("/home/chp/ioniq/vehicle_control/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_9_18_2.txt");

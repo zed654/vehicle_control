@@ -266,8 +266,6 @@ void* Dead_Reckoning(void *DR_error_flag_)
 //            std::cout << std::fixed;
 //            std::cout.precision(4);
 //            std::cout << elapsedTime << " ms.\n";
-
-
         }
     }
 

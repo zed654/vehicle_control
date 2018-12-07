@@ -18,7 +18,7 @@
 #define PCAN_BAUD_RATE PCAN_BAUD_500K
 
 // GNSS device env setting
-#define GNSS_PORT_PATH "/dev/tty.usbmodem1442210"
+#define GNSS_PORT_PATH "/dev/tty.usbmodem146220"
 #define GNSS_BAUD_RATE 9600
 
 
@@ -44,9 +44,9 @@
 #endif  // __APPLE__
 
 // Thread enable definition (CAN, GNSS)
-//#define CAN_CONTROL_ENABLE
-//#define CAN_CHASSIS_ENABLE
-//#define GNSS_ENABLE
+#define CAN_CONTROL_ENABLE
+#define CAN_CHASSIS_ENABLE
+#define GNSS_ENABLE
 
 //GNSS data write
 #define GNSS_DATA_WRITE
@@ -105,7 +105,7 @@ extern float aReqMax_Cmd;       // -5.00 ~ 5.00 소수점 2째 자리까지 가�
 extern int cluster_speed_display_value;
 
 // Stanley Steering Control
-extern bool stanley_steering_control_enable_flag;
+extern bool path_following_flag;
 
 // PD control param
 extern bool speed_pid_control_enable_flag;
@@ -174,12 +174,14 @@ extern double stanley_steering_angle;      // 최종 출력값
 extern double psi;                         // degree 단위
 extern double s;
 extern double x_error;
+extern double x_error_added_dir;
+extern double stanley_k;
 extern double path_angle;                  // psi를 구하기 위한 각도로, 기준 좌표계로부터 생성된 경로(Path)사이의 기울기 각도
 extern double triangle_area;
 extern double distance_a;
 extern double distance_b;
 extern double distance_c;
-
+extern double pathfollow_thread_running_time;
 
 #ifdef OpenCV_View_MAP
 // This map is fitted for Ochang PG

@@ -18,6 +18,7 @@
 //#ifdef RECEIVE_FREQ(5)
 //#endif
 #define RECEIVE_FREQ(hz) 5/hz
+#define RECEIVE_FREQ_VALUE 5
 
 void* GNSS_Receive(void *gnss_error_flag_)
 {
@@ -66,7 +67,7 @@ void* GNSS_Receive(void *gnss_error_flag_)
 #ifdef RECEIVE_FREQ
             GNSS_Hz_count++;
             
-            if(GNSS_Hz_count == RECEIVE_FREQ(5)) // RECEIVE_FREQ(Hz)
+            if(GNSS_Hz_count == RECEIVE_FREQ(RECEIVE_FREQ_VALUE)) // RECEIVE_FREQ(Hz)
             {
             cUblox.copyTo(&globalPVT);
 //            std::cout << std::fixed;

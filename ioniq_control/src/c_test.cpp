@@ -80,8 +80,32 @@ typedef struct TSR
 #define RECEIVE_FREQ(hz) 5/hz
 
 
+
+#define HEADING_MOVING_AVG 7000 //count
+
+#ifdef HEADING_MOVING_AVG
+std::vector<double> heading_Mavg_storage;
+int heading_Mavg_count = 7000;
+#endif
+
+
+template <typename T>
+T Mavg(T input_, std::vector<T>& Mavg_storage_tmp_, int count);
+
 int main()
 {
+    double input_ = 1;
+    double output_ = 0;
+    
+    for(int i = 0; i < 10000; i++)
+    {
+        output_ = Mavg<double>(i, heading_Mavg_storage, heading_Mavg_count);
+        //std::cout << output_ << std::endl;
+    }
+    
+    std::cout << atan2(-3, 0) * 180 / 3.141592 << std::endl;
+    std::cout << tan(10 * 3.141592 / 180) << std::endl;
+    int fsdivsdvzs = 3;
     
 #ifdef RECEIVE_FREQ
     std::cout << RECEIVE_FREQ(1) << std::endl;
@@ -435,3 +459,24 @@ int main()
 //    elapsedTime += (t2.tv_usec - t1.tv_usec) / 1000.0;   // us to ms
 //    std::cout << elapsedTime << " ms.\n";
 //}
+
+template <typename T>
+T Mavg(T input_, std::vector<T>& Mavg_storage_tmp_, int count)
+{
+    T input_tmp_ = input_;
+    T output_tmp_ = 0;
+    
+    Mavg_storage_tmp_.push_back(input_tmp_);
+    std::cout << "size applied push : " << Mavg_storage_tmp_.size() << std::endl;
+    
+    if(Mavg_storage_tmp_.size() > count) Mavg_storage_tmp_.erase(Mavg_storage_tmp_.begin());//Mavg_storage_tmp_.pop_back();
+    std::cout << "size applied pop : " << Mavg_storage_tmp_.size() << std::endl;
+    
+    for(int i = 0; i < Mavg_storage_tmp_.size(); i++)
+    {
+        output_tmp_ += (Mavg_storage_tmp_[i] / count);
+        //std::cout << Mavg_storage_tmp_[i] << std::endl;
+    }
+    
+    return output_tmp_;
+}

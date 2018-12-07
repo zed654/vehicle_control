@@ -73,8 +73,8 @@ bool print_whl_pul_flag = 0;
 bool print_yaw_rate_flag = 0;
 
 // APM, ASM enable state
-unsigned char APM_state = APM_En;   // APM_D_En, APM_En
-unsigned char ASM_state = ASM_En;   // ASM_D_En, ASM_En
+unsigned char APM_state = APM_D_En;   // APM_D_En, APM_En ,, Lateral Control
+unsigned char ASM_state = ASM_D_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
 
 // Control param
 unsigned int APM_Slevel_val = 250;  // [100, 250], (if this value set to 0, APM set to 150)
@@ -83,13 +83,14 @@ float aReqMax_Cmd = -1.;       // -5.00 ~ 5.00 소수점 2째 자리까지 가�
 int cluster_speed_display_value = 1;
 
 // Stanley Steering Control
-bool stanley_steering_control_enable_flag = 1;
+bool path_following_flag = 1;
 
 // PD control param
 bool speed_pid_control_enable_flag = 1;
 int target_vehicle_speed = 0;             // 타겟 속도
 int current_vehicle_speed = 0;               // 현재 속도
-float K_p = 0.05;
+//float K_p = 0.05;
+float K_p = 0.15;
 float K_d = 0.5;
 
 // 0.2, 0.5 -> 15
@@ -151,12 +152,15 @@ double stanley_steering_angle = 0;      // 최종 출력값
 double psi = 0;                         // degree 단위
 double s = 0;
 double x_error = 0;
+double x_error_added_dir = 0;
+double stanley_k = 0;
 double path_angle = 0;                  // psi를 구하기 위한 각도로, 기준 좌표계로부터 생성된 경로(Path)사이의 기울기 각도
 bool vehicle_restart_flag = 0;
 double triangle_area = 0;
 double distance_a = 0;
 double distance_b = 0;
 double distance_c = 0;
+double pathfollow_thread_running_time = 0;
 
 // pthread function
 void* CAN_RW(void *can_error_flag_);
@@ -199,7 +203,10 @@ unsigned char CAN_alive_count = 0;
 
 int main(int argc, char** argv)
 {
-
+#ifndef CAN_CHASSIS_ENABLE
+    vehicle_yaw_rate_error_correct = 1;
+#endif
+    
 #ifdef OpenCV_View_MAP
     img.setTo(0);
 #endif
@@ -296,7 +303,7 @@ int main(int argc, char** argv)
 }
 //	  	<arg name="video_stream_provider" value="/home/chp/darknet_ros_ws/src/darknet_ros/darknet_ros/doc/airport.avi" />
 
-//#define YAW_ANGLE_WRITE
+#define YAW_ANGLE_WRITE
 #define __PRINT__
 
 void* Print_Write_thread(void *param)
@@ -311,11 +318,13 @@ void* Print_Write_thread(void *param)
     fin.open("/home/chp/darknet_ros_ws/src/darknet_ros/ioniq_control/YAW_ANGLE/yaw_angle_save.txt");
 #endif
     
-    fin << std::fixed;
-    fin.precision(8);
-    fin << "GNSS heading" << "\t\t" << "dr_yaw_angle" << "\t\t" << "yaw_rate_accum_tmp" << "\t\tsteer_angle" << "\t\tstr_moving_avg_result" << "\t\tstanley_steering_angle" << "\t\tpath_angle" << "\t\tdr_yaw_angle" << "\t\tpsi" << "\t\tstanley_atan" << "\t\ts" << "\t\ttriangle_area" <<  "\t\tdistance_a" << "\t\tdistance_b" << "\t\tdistance_c" << "\t\tx_error" << std::endl;
+//    fin << std::fixed;
+//    fin.precision(8);
+//    fin << "GNSS heading" << "\t\t" << "dr_yaw_angle" << "\t\t" << "yaw_rate_accum_tmp" << "\t\tsteer_angle" << "\t\tstr_moving_avg_result" << "\t\tstanley_steering_angle" << "\t\tpath_angle" << "\t\tdr_yaw_angle" << "\t\tpsi" << "\t\tstanley_atan" << "\t\ts" << "\t\ttriangle_area" <<  "\t\tdistance_a" << "\t\tdistance_b" << "\t\tdistance_c" << "\t\tx_error" << std::endl;
+
 #endif
     
+    int count_tmp_ = 0;
     while(1)
     {
         
@@ -324,8 +333,11 @@ void* Print_Write_thread(void *param)
     {
         fin << std::fixed;
         fin.precision(8);
-        fin << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << "\t\t" << str_moving_avg_result  << "\t\t" << stanley_steering_angle << "\t\t" << path_angle << "\t\t" << dr_yaw_angle << "\t\t" << psi << "\t\t" << stanley_atan << "\t\t" << s << "\t\t" << triangle_area << "\t\t" << distance_a << "\t\t" << distance_b << "\t\t" << distance_c << "\t\t" << x_error << std::endl;
-        std::cout << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << std::endl;
+//        fin << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << "\t\t" << str_moving_avg_result  << "\t\t" << stanley_steering_angle << "\t\t" << path_angle << "\t\t" << dr_yaw_angle << "\t\t" << psi << "\t\t" << stanley_atan << "\t\t" << s << "\t\t" << triangle_area << "\t\t" << distance_a << "\t\t" << distance_b << "\t\t" << distance_c << "\t\t" << x_error << std::endl;
+        fin << x_error_added_dir << "\t" << count_tmp_++ << "\t" << current_vehicle_speed << "\t" << stanley_k << std::endl;
+//        std::cout << GNSS_heading << "\t\t" << dr_yaw_angle << "\t\t" << yaw_rate_accum_tmp << "\t\t" << steer_angle << std::endl;
+        usleep(1000000);
+
     }
 #endif
 
@@ -349,7 +361,6 @@ void* Print_Write_thread(void *param)
     }
 #endif
 */
-        usleep(1000);
         //usleep(1);
     }
 }
