@@ -82,9 +82,13 @@ void* CAN_RW(void *can_error_flag_)
 
         // 초기화
         // 0x156 값넣고
-        // write
         Mo_Conf(can_control);   // id 0x156
+        // write
+
+        // 초기화
+        // 0x157 값 넣고
         Mo_Val(can_control);    // id 0x157
+        // write
 
         //        can_control.can_memset();
         can_control.can_read();
@@ -293,27 +297,15 @@ void Mo_Val(CAN_AVL &can_)
 
     can_.write_param(tmp_id, tmp_dlc);
 
-    int steer_angle_tmp = 0;
-    float aReqMax_Cmd_tmp = 0;
-    if(autonomous_drive_mode_flag)
-    {
-        steer_angle_tmp = steer_angle;
-        aReqMax_Cmd_tmp = aReqMax_Cmd;
-    }
-    else
-    {
-        steer_angle_tmp = 0;
-        aReqMax_Cmd_tmp = -2;
-    }
-    can_.frame.data[0] = (u_int8_t)(((10*steer_angle_tmp) & 0x00ff));
+    can_.frame.data[0] = (u_int8_t)(((10*steer_angle) & 0x00ff));
     // steer_angle    Andgle of Steering      10 * (real_value)   [-500, 500]
-    can_.frame.data[1] = (u_int8_t)((((10*steer_angle_tmp) & 0xff00) >> 8));
+    can_.frame.data[1] = (u_int8_t)((((10*steer_angle) & 0xff00) >> 8));
     // steer_angle
     can_.frame.data[2] = cluster_speed_display_value;
     //can_.message.DATA[2] = (u_int8_t)10 & 0x00ff;
-    can_.frame.data[3] = (u_int8_t)((u_int16_t)(100 * (aReqMax_Cmd_tmp + 10.23)) & 0x00ff);
+    can_.frame.data[3] = (u_int8_t)((u_int16_t)(100 * (aReqMax_Cmd + 10.23)) & 0x00ff);
     // aReqMax_Cmd  Acceleration Control    100*((value)+10.23) [-5.0, 5.0]     멈추려면 -값 주면 된다고 함.
-    can_.frame.data[4] = (u_int8_t)(((u_int16_t)(100 * (aReqMax_Cmd_tmp + 10.23)) >> 8) & 0x00ff);
+    can_.frame.data[4] = (u_int8_t)(((u_int16_t)(100 * (aReqMax_Cmd + 10.23)) >> 8) & 0x00ff);
     // aReqMax_Cmd
     can_.frame.data[5] = 0;
     can_.frame.data[6] = 0;
@@ -405,8 +397,6 @@ bool Report_Misc(CAN_AVL &can_)
     bool can_error_flag_ = 0;
     // Repotr Misc
 
-    if(!autonomous_drive_mode_flag)
-        autonomous_drive_mode_flag = can_.frame.data[0] & 0x04;
 
     /*
      코드 작성하기

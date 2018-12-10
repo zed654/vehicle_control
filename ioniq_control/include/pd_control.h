@@ -48,7 +48,7 @@ float PD_CONTROL::MV_Cal_Func(int target_val_,  int real_val_, float K_p_, float
 //    printf("e_n : %f\n", e_n);
     float MV_tmp = 0;
     MV_tmp = K_p * e_n + K_d * (e_n - e_b);
-    MV_tmp = MV_tmp < 0 ? MV_tmp * 3.5 : MV_tmp;
+    MV_tmp = MV_tmp < -4 ? MV_tmp * 3.5 : MV_tmp;
     
 //    printf("MV = %f\n", MV_tmp);
     e_b = e_n;

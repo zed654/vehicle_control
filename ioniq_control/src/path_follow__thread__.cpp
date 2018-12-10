@@ -14,22 +14,23 @@
 //#include "TSR_receive.h"
 #include <queue>
 
-#define STANLEY_STEERING_CONTROL
-//#define PURE_PURSUIT_STEERING_CONTROL
-#define STEERING_ANGLE_MOVING_AVG
+//#define STANLEY_STEERING_CONTROL
+#define PURE_PURSUIT_STEERING_CONTROL
 //#define HEADING_MOVING_AVG// 7000 //count
+#define STEERING_ANGLE_MOVING_AVG
 
 #ifdef HEADING_MOVING_AVG
 std::vector<double> heading_Mavg_storage;
-int heading_Mavg_count = 7000;
+int heading_Mavg_count = 2000;//7000;
 #endif
 
 #ifdef STEERING_ANGLE_MOVING_AVG
 std::vector<double> steering_Mavg_storage;
-int steering_Mavg_count = 7000;
+int steering_Mavg_count = 2000;//2000;//7000;
 
-#define str_moving_avg_num 7000//1500
-double str_moving_avg_tmp[str_moving_avg_num] = {};
+// old version
+//#define str_moving_avg_num 7000//1500
+//double str_moving_avg_tmp[str_moving_avg_num] = {};
 #endif
 
 //#define LATERAL_CONTROL_PRINT
@@ -125,7 +126,8 @@ void* path_follow(void *flag)
         
         pathfollow_thread_running_time = elapsedTime;
         
-        std::cout << "PathFollow Running time : " << pathfollow_thread_running_time << " ms" << std::endl;
+//        std::cout << autonomous_drive_mode_flag << std::endl;
+//        std::cout << "PathFollow Running time : " << pathfollow_thread_running_time << " ms" << std::endl;
     }
     
     return 0;
@@ -257,10 +259,12 @@ void stanley_steering_control()
     // Heading에. Moving AVG 쓴 것.
     //dr_yaw_angle_tmp = heading_Mavg(dr_yaw_angle_tmp);
     
-    // 제어기준을 후륜중심에서 전륜중심으로
-    double vehicle_wheelbase = 2.7; // 휠베이스 길이, m
-    dr_x_tmp = vehicle_wheelbase * cos(dr_yaw_angle_tmp * 3.141592 / 180.) + dr_x;
-    dr_y_tmp = vehicle_wheelbase * sin(dr_yaw_angle_tmp * 3.141592 / 180.) + dr_y;
+//    // 제어기준을 후륜중심에서 전륜중심으로
+//    double vehicle_wheelbase = 2.7; // 휠베이스 길이, m
+//    dr_x_tmp = vehicle_wheelbase * cos(dr_yaw_angle_tmp * 3.141592 / 180.) + dr_x;
+//    dr_y_tmp = vehicle_wheelbase * sin(dr_yaw_angle_tmp * 3.141592 / 180.) + dr_y;
+    
+    
 //    std::cout << dr_x_tmp - dr_x << "\t\t" << dr_y_tmp - dr_y << std::endl;           // 제어기준 옮긴 정보 확인용도
 
 
@@ -311,8 +315,8 @@ void stanley_steering_control()
 
 
     psi = psi_tmp > 180 ? (360-psi_tmp) : psi_tmp;
-    psi = psi_tmp < -180 ? (360 + psi_tmp) : psi_tmp;
-    
+//    psi = psi_tmp < -180 ? (360 + psi_tmp) : psi_tmp;
+    psi = psi_tmp < -180 ? (360 + psi_tmp) : psi;
     
     
     // 스티어앵글각도   = 프사이(t) + arctan(k * x(t) / 차량속도)
@@ -382,14 +386,14 @@ void stanley_steering_control()
         
         // 클리핑
         steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
-        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle_tmp;
+        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle;
 #else
         // 스티어링 1도에 바퀴 0.06도 회전으로 계산.
         steer_angle_tmp = stanley_steering_angle * 500/30;
         
         // 클리핑
         steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
-        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle_tmp;
+        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle;
 #endif
     
         
@@ -482,11 +486,13 @@ void pure_pursuit_steering_control()
     double vehicle_wheelbase = 2.7; // 휠베이스 길이, m
     int current_vehicle_speed_offset = 1;
     
+//    double PP_k = 0.1;
     double PP_k = 0.1;
+    double steer_angle_tmp = 0;
     
-    int steer_angle_tmp = 0;
-    
-    int PP_LA_distance_index = 3;
+//    int PP_LA_distance_index = 3;
+//    int PP_LA_distance_index = 10;
+    int PP_LA_distance_index = 10;
     
     double PP_LA_point_x = coord_map[coord_current_address + PP_LA_distance_index].x;
     double PP_LA_point_y = coord_map[coord_current_address + PP_LA_distance_index].y;
@@ -511,25 +517,34 @@ void pure_pursuit_steering_control()
     // PP_angle calc
     double PP_angle_tmp = 0;
     PP_angle_tmp = dr_yaw_angle_tmp - PP_LA_point_angle;
-    PP_angle = PP_angle_tmp < 0 ? PP_angle_tmp + 360 : PP_angle_tmp;
+//    PP_angle_tmp = abs(PP_angle_tmp);
+    PP_angle = PP_angle_tmp > 180 ? (PP_angle_tmp - 360)  : PP_angle_tmp;
+    PP_angle = PP_angle_tmp < -180 ? (PP_angle_tmp + 360) : PP_angle;
+    
+//    psi = psi_tmp > 180 ? (360-psi_tmp) : psi_tmp;
+//    psi = psi_tmp < -180 ? (360 + psi_tmp) : psi_tmp;//    PP_angle = abs(PP_angle_tmp);
+    
+//    PP_angle = PP_angle_tmp < 0 ? PP_angle_tmp + 360 : PP_angle_tmp;
     
     // PP_LA_distance calc
     PP_LA_distance = sqrt((PP_LA_point_y - dr_y_tmp) * (PP_LA_point_y - dr_y_tmp) + (PP_LA_point_x - dr_x_tmp) * (PP_LA_point_x - dr_x_tmp));
     
 //    std::cout << "PP_angle : " << PP_angle << std::endl;
     
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    std::cout << "Heading : " << dr_yaw_angle_tmp << "\t\tPP_LA_point_angle : " << PP_LA_point_angle << "\t\tPP_angle : " << PP_angle << "\t\tPP_LA_distance : " << PP_LA_distance << std::endl;
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+
     
     // Steering angle calc
-    steer_angle_tmp = atan(sin(PP_angle / 180 * 3.141592) * vehicle_wheelbase * 2 / (current_vehicle_speed + current_vehicle_speed_offset) * PP_k) * 180 / 3.141592;
+    steer_angle_tmp = atan(sin(PP_angle / 180 * 3.141592) * vehicle_wheelbase * 2 / (current_vehicle_speed + current_vehicle_speed_offset + PP_LA_distance) * PP_k) * 180 / 3.141592;
+    
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    std::cout << "dr_yaw_angle_tmp : " << dr_yaw_angle_tmp << "\t\tPP_LA_point_angle : " << PP_LA_point_angle << "\t\tPP_angle : " << PP_angle << "\t\tPP_LA_distance : " << PP_LA_distance << "\t\tsteer_angle_tmp : " << steer_angle_tmp << std::endl;
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
+    // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
     
     steer_angle_tmp = steer_angle_tmp * 500/30;
     
@@ -542,24 +557,41 @@ void pure_pursuit_steering_control()
     if (vehicle_yaw_rate_error_correct == 1)
     {
         
-        
 #ifdef STEERING_ANGLE_MOVING_AVG
         // Heading에 Moving AVG 쓴 것.
-        stanley_steering_angle = Mavg<double>(stanley_steering_angle, steering_Mavg_storage, steering_Mavg_count);
+//        stanley_steering_angle = Mavg<double>(stanley_steering_angle, steering_Mavg_storage, steering_Mavg_count);
+        stanley_steering_angle = Mavg<double>(steer_angle_tmp, steering_Mavg_storage, steering_Mavg_count);
         steer_angle_tmp = stanley_steering_angle * 500/30;
         
         // 클리핑
         steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
-        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle_tmp;
+        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle;
 #else
         // 스티어링 1도에 바퀴 0.06도 회전으로 계산.
         steer_angle_tmp = stanley_steering_angle * 500/30;
         
         // 클리핑
         steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
-        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle_tmp;
+        steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle;
 #endif
         
+
+#ifdef OpenCV_View_MAP
+
+        // cv::circle을 이용한 좌표 그리기
+        cv::Point dot(PP_LA_point_x*4, PP_LA_point_y*4);
+        cv::circle(img, dot, 6, CvScalar(255,0,0));
+        
+        // img data에 접근하여 픽셀 변경을 통한 좌표 그리기
+        //            img.data[(int)(dr_y*4) * img.cols * 3 + (int)(dr_x*4) * 3 + 0] = 0;
+        //            img.data[(int)(dr_y*4) * img.cols * 3 + (int)(dr_x*4) * 3 + 1] = 255;
+        //            img.data[(int)(dr_y*4) * img.cols * 3 + (int)(dr_x*4) * 3 + 2] = 255;
+        
+        //            usleep(1);
+        //            count_dr++;
+        //            printf("count_dr = %d\n", count_dr);
+        // imshow는 main()에서. thread에서는 imshow 애러뜸.
+#endif
         
 //#ifdef STEERING_ANGLE_MOVING_AVG
 //

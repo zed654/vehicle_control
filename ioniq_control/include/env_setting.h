@@ -13,12 +13,12 @@
 
 
 // CAN device env setting
-#define CONTROL_CAN_DEVICE PCAN_USBBUS1
-#define CHASSIS_CAN_DEVICE PCAN_USBBUS2
+#define CONTROL_CAN_DEVICE PCAN_USBBUS2
+#define CHASSIS_CAN_DEVICE PCAN_USBBUS1
 #define PCAN_BAUD_RATE PCAN_BAUD_500K
 
 // GNSS device env setting
-#define GNSS_PORT_PATH "/dev/tty.usbmodem146220"
+#define GNSS_PORT_PATH "/dev/tty.usbmodem1452340"
 #define GNSS_BAUD_RATE 9600
 
 
@@ -103,6 +103,9 @@ extern unsigned int APM_Slevel_val;  // [100, 250], (if this value set to 0, APM
 extern int steer_angle;    // 0x14 // value * 10 => 0xc8 // [-500, 500]
 extern float aReqMax_Cmd;       // -5.00 ~ 5.00 소수점 2째 자리까지 가능
 extern int cluster_speed_display_value;
+
+// Autonomous driving flag
+extern int autonomous_drive_mode_flag;
 
 // Stanley Steering Control
 extern bool path_following_flag;
