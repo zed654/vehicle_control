@@ -510,6 +510,7 @@ void pure_pursuit_steering_control()
     
     double PP_LA_point_angle_tmp = 0;
     PP_LA_point_angle_tmp = atan2(PP_LA_point_y - dr_y_tmp, PP_LA_point_x - dr_x_tmp) * 180 / 3.141592;
+//    PP_LA_point_angle_tmp = atan2(PP_LA_point_y, PP_LA_point_x) * 180 / 3.141592;
     PP_LA_point_angle = PP_LA_point_angle_tmp < 0 ? PP_LA_point_angle_tmp + 360 : PP_LA_point_angle_tmp;
     
     //dr_yaw_angle_tmp = dr_yaw_angle_tmp > 180 ? dr_yaw_angle_tmp - 360 : dr_yaw_angle_tmp;

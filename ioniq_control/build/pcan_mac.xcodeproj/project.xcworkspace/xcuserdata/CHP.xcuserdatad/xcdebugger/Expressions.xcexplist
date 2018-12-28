@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "main:c_test.cpp">
+         <PersistentStrings>
+            <PersistentString
+               value = "size">
+            </PersistentString>
+            <PersistentString
+               value = "sizeof(value_)">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "void std::__1::allocator_traits&lt;std::__1::allocator&lt;double&gt; &gt;::construct&lt;double, double&gt;(std::__1::allocator&lt;double&gt;&amp;, double*, double const&amp;) [inlined]:memory">
          <PersistentStrings>
             <PersistentString

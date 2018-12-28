@@ -18,7 +18,7 @@
 #define PCAN_BAUD_RATE PCAN_BAUD_500K
 
 // GNSS device env setting
-#define GNSS_PORT_PATH "/dev/tty.usbmodem1452340"
+#define GNSS_PORT_PATH "/dev/tty.usbmodem1462210"
 #define GNSS_BAUD_RATE 9600
 
 
@@ -104,6 +104,27 @@ extern int steer_angle;    // 0x14 // value * 10 => 0xc8 // [-500, 500]
 extern float aReqMax_Cmd;       // -5.00 ~ 5.00 소수점 2째 자리까지 가능
 extern int cluster_speed_display_value;
 
+// GNSS, Dead Reckoning variable
+// Starting point   : 36.72790320        127.44262740
+//      기준의 x, y좌표(m단위)
+extern double base_latitude;
+extern double base_longitude;
+extern double gnss_x;
+extern double gnss_y;
+extern double gnss_yaw_angle;
+extern double GNSS_heading;
+
+// OpenCV Viewer
+extern int coord_map_size;
+extern double left_top_x;
+extern double left_top_y;
+extern double right_bottom_x;
+extern double right_bottom_y;
+extern double opencv_viewer_zoom;         // 맵이 너무 크면, opencv_viewer_zoom을 줄이면 됨.
+extern double opencv_view_point_margin;
+extern double opencv_viewer_width;
+extern double opencv_viewer_height;
+
 // Autonomous driving flag
 extern int autonomous_drive_mode_flag;
 
@@ -133,16 +154,7 @@ extern bool DR_error_flag;
 
 
 
-// GNSS, Dead Reckoning variable
-// Starting point   : 36.72790320        127.44262740
-//      기준의 x, y좌표(m단위)
-extern double base_latitude;
-extern double base_longitude;
 
-extern double gnss_x;
-extern double gnss_y;
-extern double gnss_yaw_angle;
-extern double GNSS_heading;
 
 // Dead Reckoning 결과
 extern double dr_yaw_angle;

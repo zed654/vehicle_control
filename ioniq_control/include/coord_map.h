@@ -30,7 +30,6 @@ typedef struct coordinates_map
     double WP_stop_line_x;
     double WP_stop_line_y;
     int WP_target_speed;
-    
     //    int WP_address = 0;             // WP_stop_line_address 로 수정
     //    int WP_next_address = 0;        // WP_stop_line_x       로 수정
     //    bool WP_stop_line_flag = 0;     // WP_target_speed      로 수정

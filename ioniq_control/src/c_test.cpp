@@ -92,8 +92,31 @@ int heading_Mavg_count = 7000;
 template <typename T>
 T Mavg(T input_, std::vector<T>& Mavg_storage_tmp_, int count);
 
+double find_small_value(double value_[], int size_)
+{
+    double tmp = value_[0];
+    for(int i = 1; i < size_; i++)
+    {
+        // 작은거 찾기
+        tmp = value_[i] > tmp ? tmp : value_[i];
+    }
+    
+    return tmp;
+}
+
 int main()
 {
+    double *list_test;
+    list_test = (double *)malloc(sizeof(double));
+    list_test[0] = 30;
+    list_test[1] = 3;
+    list_test[2] = 32;
+    list_test[3] = 9;
+    list_test[4] = 11;
+    
+    double small_ = find_small_value(list_test, 5);
+    std::cout << small_ << std::endl;
+
     double input_ = 1;
     double output_ = 0;
     

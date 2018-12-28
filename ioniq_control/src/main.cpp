@@ -73,16 +73,41 @@ bool print_whl_pul_flag = 0;
 bool print_yaw_rate_flag = 0;
 
 // APM, ASM enable state
-unsigned char APM_state = APM_En;   // APM_D_En, APM_En ,, Lateral Control
-unsigned char ASM_state = ASM_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
-//unsigned char APM_state = APM_D_En;   // APM_D_En, APM_En ,, Lateral Control
-//unsigned char ASM_state = ASM_D_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
+//unsigned char APM_state = APM_En;   // APM_D_En, APM_En ,, Lateral Control
+//unsigned char ASM_state = ASM_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
+unsigned char APM_state = APM_D_En;   // APM_D_En, APM_En ,, Lateral Control
+unsigned char ASM_state = ASM_D_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
 
 // Control param
 unsigned int APM_Slevel_val = 250;  // [100, 250], (if this value set to 0, APM set to 150)
 int steer_angle = 0;    // 0x14 // value * 10 => 0xc8 // [-500, 500]
 float aReqMax_Cmd = -1.;       // -5.00 ~ 5.00 소수점 2째 자리까지 가능
 int cluster_speed_display_value = 1;
+
+// GNSS, Dead Reckoning variable
+// Starting point   : 36.72790320        127.44262740
+// K-City           : 37.24385200        126.77555800
+//      기준의 x, y좌표(m단위)
+//double base_latitude = 37.24385200;//36.72790320;
+//double base_longitude = 126.77555800;//127.44262740;
+double base_latitude = 36.62893510; //36.72790320;
+double base_longitude = 127.45799160; //127.44262740;
+// 36.62893510        127.45799160
+double gnss_x = 0;
+double gnss_y = 0;
+double gnss_yaw_angle = 0;
+double GNSS_heading = 0;
+
+// OpenCV Viewer, 기본 1픽셀당 (1 * opencv_viewer_zoom)m임.
+extern int coord_map_size = 0;
+double left_top_x =  0;
+double left_top_y =  0;
+double right_bottom_x = 0;
+double right_bottom_y = 0;
+double opencv_viewer_zoom = 4;         // 맵이 너무 크면, opencv_viewer_zoom을 줄이면 됨. (픽셀 간격을 4배해준 것. 더 잘보이도록)
+double opencv_view_point_margin = 50;   // 양쪽, 위 아래에 (opencv_view_point_margin/2)의 픽셀만큼 추가적으로 더 그려줌.
+double opencv_viewer_width = 0;
+double opencv_viewer_height = 0;
 
 // Autonomous driving flag
 int autonomous_drive_mode_flag = 0;
@@ -112,19 +137,6 @@ bool gnss_error_flag = 0;
 bool DR_error_flag = 0;
 
 
-
-// GNSS, Dead Reckoning variable
-// Starting point   : 36.72790320        127.44262740
-// K-City           : 37.24385200		126.77555800
-//      기준의 x, y좌표(m단위)
-//double base_latitude = 37.24385200;//36.72790320;
-//double base_longitude = 126.77555800;//127.44262740;
-double base_latitude = 36.72790320;
-double base_longitude = 127.44262740;
-double gnss_x = 0;
-double gnss_y = 0;
-double gnss_yaw_angle = 0;
-double GNSS_heading = 0;
 
 // Dead Reckoning 결과
 double dr_yaw_angle = 0;
@@ -213,6 +225,7 @@ int main(int argc, char** argv)
 #endif
     
 #ifdef OpenCV_View_MAP
+    // Map initialize
     img.setTo(0);
 #endif
 

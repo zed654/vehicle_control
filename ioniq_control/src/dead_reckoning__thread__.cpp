@@ -174,8 +174,10 @@ void* Dead_Reckoning(void *DR_error_flag_)
 
 
 #ifdef ONLY_DGPS
+            
             dr_x = gnss_x;
             dr_y = gnss_y;
+            dr_yaw_angle = gnss_yaw_angle;
 #endif
 
 #ifdef KINEMATIC_BICYCLE_MODEL // No IMS, Coord 기준 : 무게중심 ?
@@ -222,13 +224,13 @@ void* Dead_Reckoning(void *DR_error_flag_)
 #ifdef OpenCV_View_MAP
             //            pthread_mutex_lock(&mutex); // 잠금을 생성한다.
             // opencv viewer에 그릴 좌표 설정
-            opencv_x = dr_x * 4;
-            opencv_y = dr_y * 4;
+            opencv_x = dr_x * opencv_viewer_zoom;
+            opencv_y = dr_y * opencv_viewer_zoom;
             //            printf("elapsedTime = %f \t\t delta_dr_x = %f \t\t opencv_x = %f \t\t opencv_y = %f\n", elapsedTime, delta_dr_x, opencv_x, opencv_y);
             //            pthread_mutex_unlock(&mutex); // 잠금을 생성한다.
             
             // cv::circle을 이용한 좌표 그리기
-            cv::Point dot(dr_x*4, dr_y*4);
+            cv::Point dot(dr_x*opencv_viewer_zoom, dr_y*opencv_viewer_zoom);
             cv::circle(img, dot, 1, CvScalar(0,255,255));
             
             // img data에 접근하여 픽셀 변경을 통한 좌표 그리기
