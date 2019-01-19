@@ -246,6 +246,9 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 1010;
 			};
 			buildConfigurationList = D4C7C5A1A0044D7487CFA927 /* Build configuration list for PBXProject "pcan_mac" */;
@@ -287,7 +290,7 @@
 			name = "CMake Rules";
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C /Users/CHP/ioniq/ioniq_control/build -f /Users/CHP/ioniq/ioniq_control/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all";
+			shellScript = "make -C /Users/CHP/ioniq/ioniq_control/build -f /Users/CHP/ioniq/ioniq_control/build/CMakeScripts/ALL_BUILD_cmakeRulesBuildPhase.make$CONFIGURATION all\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

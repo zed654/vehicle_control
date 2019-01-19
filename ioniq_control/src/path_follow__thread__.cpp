@@ -167,7 +167,9 @@ void waypoint_change()
     // Rover와 Waypoint의 거리가 1m보다 짧으면 다음 Waypoint로 이동
 //    if(Rover2WP_distance < 1.5) // 1은 1m
     if((  (Rover2WP_distance < Rover2WP_standard_distance) && (angle_tmp > Rover2WP_standard_angle)  )) coord_current_address++;
-    
+
+//    std::cout << "gnss_x : " << gnss_x << "\t\tgnss_y : " << gnss_y << "\t\theading : " << GNSS_heading << std::endl;
+//    std::cout << "coord_current_address : " << coord_current_address << "\t\tangle_tmp : " << angle_tmp << "\t\tRover2WP_standard_angle : " << Rover2WP_standard_angle << std::endl;
 //    std::cout << "Rover2WP_distance = " << Rover2WP_distance << std::endl;
 //    std::cout << "coord_current_address = " << coord_current_address << std::endl;
     
@@ -176,7 +178,9 @@ void waypoint_change()
     //        img_coord_map.data[(int)(coord_map[i].y*4) * img_coord_map.cols + (int)(coord_map[i].x*4)] = 0;
 
     // viewer에 그리기
-    cv::Point dot(coord_map[coord_current_address].x*4, coord_map[coord_current_address].y*4);
+//    cv::Point dot(coord_map[coord_current_address].x*4, coord_map[coord_current_address].y*4);
+    cv::Point dot(coord_map[coord_current_address].x * opencv_viewer_zoom, coord_map[coord_current_address].y * opencv_viewer_zoom);
+    
 //    cv::circle(img, dot, 1, CvScalar(0,0,255));
 
     // 좌표지도용 좌표이미지에 그리기
@@ -492,7 +496,7 @@ void pure_pursuit_steering_control()
     
 //    int PP_LA_distance_index = 3;
 //    int PP_LA_distance_index = 10;
-    int PP_LA_distance_index = 10;
+    int PP_LA_distance_index = 5;
     
     double PP_LA_point_x = coord_map[coord_current_address + PP_LA_distance_index].x;
     double PP_LA_point_y = coord_map[coord_current_address + PP_LA_distance_index].y;
@@ -541,7 +545,7 @@ void pure_pursuit_steering_control()
     // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
     // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
     // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
-    std::cout << "dr_yaw_angle_tmp : " << dr_yaw_angle_tmp << "\t\tPP_LA_point_angle : " << PP_LA_point_angle << "\t\tPP_angle : " << PP_angle << "\t\tPP_LA_distance : " << PP_LA_distance << "\t\tsteer_angle_tmp : " << steer_angle_tmp << std::endl;
+//    std::cout << "dr_yaw_angle_tmp : " << dr_yaw_angle_tmp << "\t\tPP_LA_point_angle : " << PP_LA_point_angle << "\t\tPP_angle : " << PP_angle << "\t\tPP_LA_distance : " << PP_LA_distance << "\t\tsteer_angle_tmp : " << steer_angle_tmp << std::endl;
     // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
     // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
     // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T // P R I N T
@@ -567,6 +571,8 @@ void pure_pursuit_steering_control()
         // 클리핑
         steer_angle = steer_angle_tmp > 500 ? 500 : steer_angle_tmp;
         steer_angle = steer_angle_tmp < -500 ? -500 : steer_angle;
+        
+//        std::cout << "steer_angle : " << steer_angle << std::endl;
 #else
         // 스티어링 1도에 바퀴 0.06도 회전으로 계산.
         steer_angle_tmp = stanley_steering_angle * 500/30;
@@ -580,7 +586,10 @@ void pure_pursuit_steering_control()
 #ifdef OpenCV_View_MAP
 
         // cv::circle을 이용한 좌표 그리기
-        cv::Point dot(PP_LA_point_x*4, PP_LA_point_y*4);
+//        cv::Point dot(PP_LA_point_x*4, PP_LA_point_y*4);
+
+        cv::Point dot(PP_LA_point_x * opencv_viewer_zoom, PP_LA_point_y * opencv_viewer_zoom);
+        
         cv::circle(img, dot, 6, CvScalar(255,0,0));
         
         // img data에 접근하여 픽셀 변경을 통한 좌표 그리기

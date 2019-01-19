@@ -13,12 +13,13 @@
 
 
 // CAN device env setting
-#define CONTROL_CAN_DEVICE PCAN_USBBUS2
-#define CHASSIS_CAN_DEVICE PCAN_USBBUS1
+#define CONTROL_CAN_DEVICE PCAN_USBBUS1
+#define CHASSIS_CAN_DEVICE PCAN_USBBUS2
 #define PCAN_BAUD_RATE PCAN_BAUD_500K
 
 // GNSS device env setting
-#define GNSS_PORT_PATH "/dev/tty.usbmodem1462210"
+//#define GNSS_PORT_PATH "/dev/tty.usbmodem1442401"
+#define GNSS_PORT_PATH "/dev/tty.usbmodem1462401"
 #define GNSS_BAUD_RATE 9600
 
 

@@ -82,8 +82,15 @@ void Coordinates_Map_Data()
 
 //    fin.open("../../GNSS/gnss_receive_data_20181213_school.txt");
     
-    fin.open("../../GNSS/gnss_receive_data_20181214.txt");
+//    fin.open("../../GNSS/gnss_receive_data_20181214.txt");
+//    fin.open("../../GNSS/gnss_receive_data_CtoH.txt");
+//    fin.open("../../GNSS/gnss_receive_data_HtoC.txt");
+
+    fin.open("../../GNSS/gnss_receive_data_20190119.txt");
     
+//    fin.open("../../GNSS/gnss_receive_data_190109.txt");
+    
+
     
 #else
     //fin.open("/home/chp/ioniq/vehicle_control/Code_CHP/PEAKCAN_Mac/c++/GNSS/Coordinates_Map/gnss_receive_data_9_18_2.txt");

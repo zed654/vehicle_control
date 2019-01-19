@@ -73,9 +73,9 @@ bool print_whl_pul_flag = 0;
 bool print_yaw_rate_flag = 0;
 
 // APM, ASM enable state
-//unsigned char APM_state = APM_En;   // APM_D_En, APM_En ,, Lateral Control
+unsigned char APM_state = APM_En;   // APM_D_En, APM_En ,, Lateral Control
 //unsigned char ASM_state = ASM_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
-unsigned char APM_state = APM_D_En;   // APM_D_En, APM_En ,, Lateral Control
+//unsigned char APM_state = APM_D_En;   // APM_D_En, APM_En ,, Lateral Control
 unsigned char ASM_state = ASM_D_En;   // ASM_D_En, ASM_En ,, Longitudinal Control
 
 // Control param
@@ -104,7 +104,7 @@ double left_top_x =  0;
 double left_top_y =  0;
 double right_bottom_x = 0;
 double right_bottom_y = 0;
-double opencv_viewer_zoom = 4;         // 맵이 너무 크면, opencv_viewer_zoom을 줄이면 됨. (픽셀 간격을 4배해준 것. 더 잘보이도록)
+double opencv_viewer_zoom = 8;         // 맵이 너무 크면, opencv_viewer_zoom을 줄이면 됨. (픽셀 간격을 4배해준 것. 더 잘보이도록)
 double opencv_view_point_margin = 50;   // 양쪽, 위 아래에 (opencv_view_point_margin/2)의 픽셀만큼 추가적으로 더 그려줌.
 double opencv_viewer_width = 0;
 double opencv_viewer_height = 0;
